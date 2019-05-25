@@ -18,7 +18,12 @@ class App extends Component {
 						Speak Easy
 					</Typography>
 
-					<Button color="primary" variant="contained">
+					<Button 
+						color="primary" 
+						variant="contained" 
+						component={Link}
+						to="/submit-conference"
+					>
 				        Submit Conference
 				    </Button>
 				</Box>

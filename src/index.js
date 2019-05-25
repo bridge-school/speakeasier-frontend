@@ -11,7 +11,7 @@ ReactDOM.render(
     <Router>
         <div>
             <Route exact path="/" component={App}/>
-            <Route path="/form" component={Form}/>
+            <Route path="/submit-conference" component={Form}/>
         </div>
     </Router>
 </div>, document.getElementById('root'));
