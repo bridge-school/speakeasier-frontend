@@ -11,8 +11,15 @@ import HomePage from './HomePage';
 
 import './App.css';
 
-export const App = () =>
-	<Router>
-		<Route exact path="/" component={HomePage}/>
-		<Route path="/submit-conference" component={Form}/>
-	</Router>
+class App extends Component {
+	render() {
+		return (
+			<Router>
+				<Route exact path="/" component={HomePage}/>
+				<Route path="/submit-conference" component={Form}/>
+			</Router>
+		)
+	}
+}
+
+export default App;
