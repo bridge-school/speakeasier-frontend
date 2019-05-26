@@ -22,7 +22,7 @@ const FormPage = () =>
         Back To Conferences
       </Button>
     </Box>
-  </Container>
+  </Container>;
 
 
 export default FormPage;
