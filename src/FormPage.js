@@ -3,6 +3,7 @@ import Container from "@material-ui/core/Container";
 import Moment from "@date-io/moment";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import Header from "./Header";
+import GooglePlacesAutocomplete from './GooglePlacesAutocomplete';
 
 const FormPage = () => {
   const [selectedEventDate, setEventDate] = useState(new Date());
@@ -19,6 +20,7 @@ const FormPage = () => {
   return (
     <Container maxWidth="md">
       <Header buttonText="Back To Conferences" path="/" />
+	  <GooglePlacesAutocomplete />
       <MuiPickersUtilsProvider utils={Moment}>
         <h4>Event Date</h4>
         <DatePicker value={selectedEventDate} onChange={onEventDateChange} />
