@@ -1,37 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "@material-ui/core/Container";
-import Moment from "@date-io/moment";
-import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import Header from "./Header";
-import GooglePlacesAutocomplete from './GooglePlacesAutocomplete';
+import Form from "./Form";
 
 const FormPage = () => {
-  const [selectedEventDate, setEventDate] = useState(new Date());
-  const [selectedSubmissionDate, setSubmissionDate] = useState(new Date());
-
-  const onEventDateChange = date => {
-    setEventDate(date);
-  };
-
-  const onSubmissionDateChange = date => {
-    setSubmissionDate(date);
-  };
-
   return (
     <Container maxWidth="md">
       <Header buttonText="Back To Conferences" path="/" />
-	  <GooglePlacesAutocomplete />
-      <MuiPickersUtilsProvider utils={Moment}>
-        <h4>Event Date</h4>
-        <DatePicker value={selectedEventDate} onChange={onEventDateChange} />
-      </MuiPickersUtilsProvider>
-      <MuiPickersUtilsProvider utils={Moment}>
-        <h4>Submission Date</h4>
-        <DatePicker
-          value={selectedSubmissionDate}
-          onChange={onSubmissionDateChange}
-        />
-      </MuiPickersUtilsProvider>
+
+      <h1>Form</h1>
+      <Form />
     </Container>
   );
 };
