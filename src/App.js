@@ -1,20 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import Form from './Form';
+import FormPage from './FormPage';
 import HomePage from './HomePage';
 
+const App = () =>
+  <Router>
+    <Route exact path="/" component={HomePage}/>
+    <Route path="/submit-conference" component={FormPage}/>
+  </Router>;
 
-import './App.css';
-
-class App extends Component {
-	render() {
-		return (
-			<Router>
-				<Route exact path="/" component={HomePage}/>
-				<Route path="/submit-conference" component={Form}/>
-			</Router>
-		)
-	}
-}
 
 export default App;
