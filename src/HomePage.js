@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 class HomePage extends Component {
   render () {
     return (
-      <Container maxWidth="sm">
+      <Container maxWidth="md">
         <Box my={4} display="flex" justifyContent="space-between" alignItems="center">
           <Typography variant="h4" component="h1" gutterBottom>
             <Box fontFamily="Monospace">
