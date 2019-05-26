@@ -3,9 +3,6 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 import Form from './Form';
 import HomePage from './HomePage';
 
-
-import './App.css';
-
 class App extends Component {
 	render() {
 		return (
