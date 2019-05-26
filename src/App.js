@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import Form from './Form';
+import FormPage from './FormPage';
 import HomePage from './HomePage';
 
 class App extends Component {
@@ -8,7 +8,7 @@ class App extends Component {
 		return (
 			<Router>
 				<Route exact path="/" component={HomePage}/>
-				<Route path="/submit-conference" component={Form}/>
+				<Route path="/submit-conference" component={FormPage}/>
 			</Router>
 		)
 	}
