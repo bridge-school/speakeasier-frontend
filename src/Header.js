@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Header = ({ path, buttonText }) =>
   <Container>
-    <Box my={4} display="flex" justifyContent="space-between" alignItems="center">
+    <Box my={4} display="flex" justifyContent="space-between">
       <Typography variant="h4" component="h1" gutterBottom>
         <Box fontFamily="Monospace">
           Speak Easier
