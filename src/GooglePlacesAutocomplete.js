@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import PlacesAutocomplete from 'react-places-autocomplete';
-import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { geocodeByPlaceId } from 'react-places-autocomplete';
 
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -22,15 +22,11 @@ class GooglePlacesAutocomplete extends Component {
 	}
 
 	handleChange = val => {
-		this.setState({ address: val })
+		this.setState({ address: val });
 	}
 
-	handleSelect = address => {
-		this.setState({address})
-		// geocodeByAddress(address)
-		// .then(results => getLatLng(results[0]))
-		// .then(latLng => console.log('Success', latLng))
-		// .catch(error => console.error('Error', error));
+	handleSelect = (address, placeId) => {
+		this.setState({ address });
 	};
 
 
@@ -44,13 +40,16 @@ class GooglePlacesAutocomplete extends Component {
 	}
 
 	componentDidMount() {
-		window.initMap = this.initMap
+		window.initMap = this.initMap;
+
 		const gmapScriptEl = document.createElement(`script`)
-		gmapScriptEl.src = `https://maps.googleapis.com/maps/api/js?key=${gmapsApi}&libraries=places&callback=initMap`
-		document.querySelector(`body`).insertAdjacentElement(`beforeend`, gmapScriptEl)
+		gmapScriptEl.src = `https://maps.googleapis.com/maps/api/js?key=${gmapsApi}&libraries=places&callback=initMap`;
+
+		document.querySelector(`body`).insertAdjacentElement(`beforeend`, gmapScriptEl);
 	}
 
 	render() {
+
 		return (
 			<div>
 			{this.state.gmapsLoaded &&
@@ -73,28 +72,25 @@ class GooglePlacesAutocomplete extends Component {
 								})}
 							/>
 
-							{loading && <div>Loading...</div>}
+							{loading && <p>Loading...</p>}
 
-							<List>
-
-							{suggestions.map(suggestion => {
-								return (
-
-									<div
-									{...getSuggestionItemProps(suggestion)}
-									>
-										<ListItem button>
-										  <ListItemText primary={suggestion.description} />
-										</ListItem>
-									</div>
-								);
-							})}
-							</List>
+							{(!loading && suggestions.length > 0) &&
+								<List>
+									{suggestions.map(suggestion => {
+										return (
+											<ListItem button
+											{...getSuggestionItemProps(suggestion)}
+											>
+											  <ListItemText primary={suggestion.description} />
+											</ListItem>
+										);
+									})}
+								</List>
+							}
 						</div>
 					)}
 				</PlacesAutocomplete>
 			}
-
 			</div>
 		)
 	}
