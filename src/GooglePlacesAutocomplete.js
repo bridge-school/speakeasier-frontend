@@ -15,6 +15,7 @@ class GooglePlacesAutocomplete extends Component {
 
 	constructor(props) {
 		super(props);
+		console.log(props);
 		this.state = {
 			address: '',
 			gmapsLoaded: false
@@ -66,7 +67,7 @@ class GooglePlacesAutocomplete extends Component {
 								Event Location
 							</InputLabel>
 
-							<Input
+							<Input className={this.props.className}
 								{...getInputProps({
 									placeholder: ''
 								})}

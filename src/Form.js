@@ -1,10 +1,25 @@
-import React, { useState } from "react";
-import Container from "@material-ui/core/Container";
-import Moment from "@date-io/moment";
-import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Moment from '@date-io/moment';
+import TextField from '@material-ui/core/TextField';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import GooglePlacesAutocomplete from './GooglePlacesAutocomplete';
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    textAlign: 'center'
+  },
+  inputField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 300,
+    marginTop: 20
+  }
+}));
+
 const Form = () => {
+  const classes = useStyles();
   const [selectedEventDate, setEventDate] = useState(new Date());
   const [selectedSubmissionDate, setSubmissionDate] = useState(new Date());
 
@@ -17,20 +32,49 @@ const Form = () => {
   };
 
   return (
-    <Container>
-	 <GooglePlacesAutocomplete />
+    <form className={classes.root}>
+	<GooglePlacesAutocomplete />
+
+      <TextField
+        id="standard-name"
+        label="Event Name"
+        defaultValue="My Event Name"
+        className={classes.inputField}
+      />
+      <TextField
+        id="standard-name"
+        label="Event Link"
+        defaultValue="My Event Website"
+        className={classes.inputField}
+      />
       <MuiPickersUtilsProvider utils={Moment}>
-        <h4>Event Date</h4>
-        <DatePicker value={selectedEventDate} onChange={onEventDateChange} />
+        <DatePicker
+          className={classes.inputField}
+          label="Event Date"
+          value={selectedEventDate}
+          onChange={onEventDateChange}/>
       </MuiPickersUtilsProvider>
       <MuiPickersUtilsProvider utils={Moment}>
-        <h4>Submission Date</h4>
         <DatePicker
+          className={classes.inputField}
+          label="Submission Date"
           value={selectedSubmissionDate}
           onChange={onSubmissionDateChange}
         />
       </MuiPickersUtilsProvider>
-    </Container>
+      <TextField
+        id="standard-name"
+        label="Contact Name"
+        defaultValue="My Name"
+        className={classes.inputField}
+      />
+      <TextField
+        id="standard-name"
+        label="Contact E-mail"
+        defaultValue="My E-mail"
+        className={classes.inputField}
+      />
+    </form>
   );
 };
 
