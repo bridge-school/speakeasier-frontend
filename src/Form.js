@@ -5,10 +5,6 @@ import TextField from '@material-ui/core/TextField';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    textAlign: 'center'
-  },
   inputField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -19,59 +15,76 @@ const useStyles = makeStyles(theme => ({
 
 const Form = () => {
   const classes = useStyles();
-  const [selectedEventDate, setEventDate] = useState(new Date());
-  const [selectedSubmissionDate, setSubmissionDate] = useState(new Date());
+  const [eventName, setEventName] = useState('');
+  const [eventLink, setEventLink] = useState('');
+  const [eventDate, setEventDate] = useState(new Date());
+  const [submissionDate, setSubmissionDate] = useState(new Date());
+  const [contactName, setContactName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
 
-  const onEventDateChange = date => {
-    setEventDate(date);
+  const handleDateChange = setDate => date => {
+    setDate(date);
   };
-
-  const onSubmissionDateChange = date => {
-    setSubmissionDate(date);
+  const handleInputFieldChange = setValue => event => {
+    setValue(event.target.value);
   };
 
   return (
-    <form className={classes.root}>
-      <TextField
-        id="standard-name"
-        label="Event Name"
-        placeholder="My Event Name"
-        className={classes.inputField}
-      />
-      <TextField
-        id="standard-name"
-        label="Event Link"
-        placeholder="My Event Website"
-        className={classes.inputField}
-      />
-      <MuiPickersUtilsProvider utils={Moment}>
-        <DatePicker
+    <div>
+      <p>Event Details: {eventName} {eventLink}</p>
+      <p>Event Date: {eventDate.toString()}</p>
+      <p>Submission Date: {submissionDate.toString()}</p>
+      <p>Contact Info: {contactName} {contactEmail}</p>
+      <form>
+        <TextField
+          id="standard-name"
+          label="Event Name"
+          placeholder="My Event Name"
           className={classes.inputField}
-          label="Event Date"
-          value={selectedEventDate}
-          onChange={onEventDateChange}/>
-      </MuiPickersUtilsProvider>
-      <MuiPickersUtilsProvider utils={Moment}>
-        <DatePicker
-          className={classes.inputField}
-          label="Submission Date"
-          value={selectedSubmissionDate}
-          onChange={onSubmissionDateChange}
+          value={eventName}
+          onChange={handleInputFieldChange(setEventName)}
         />
-      </MuiPickersUtilsProvider>
-      <TextField
-        id="standard-name"
-        label="Contact Name"
-        placeholder="My Name"
-        className={classes.inputField}
-      />
-      <TextField
-        id="standard-name"
-        label="Contact E-mail"
-        placeholder="My E-mail"
-        className={classes.inputField}
-      />
-    </form>
+        <TextField
+          id="standard-name"
+          label="Event Link"
+          placeholder="My Event Website"
+          className={classes.inputField}
+          value={eventLink}
+          onChange={handleInputFieldChange(setEventLink)}
+        />
+        <MuiPickersUtilsProvider utils={Moment}>
+          <DatePicker
+            className={classes.inputField}
+            label="Event Date"
+            value={eventDate}
+            onChange={handleDateChange(setEventDate)}/>
+        </MuiPickersUtilsProvider>
+        <MuiPickersUtilsProvider utils={Moment}>
+          <DatePicker
+            className={classes.inputField}
+            label="Submission Date"
+            value={submissionDate}
+            onChange={handleDateChange(setSubmissionDate)}
+          />
+        </MuiPickersUtilsProvider>
+        <TextField
+          id="standard-name"
+          label="Contact Name"
+          placeholder="My Name"
+          className={classes.inputField}
+          value={contactName}
+          onChange={handleInputFieldChange(setContactName)}
+        />
+        <TextField
+          id="standard-name"
+          label="Contact E-mail"
+          placeholder="My E-mail"
+          className={classes.inputField}
+          value={contactEmail}
+          onChange={handleInputFieldChange(setContactEmail)}
+        />
+      </form>
+    </div>
   );
 };
 
