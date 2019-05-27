@@ -24,74 +24,91 @@ const useStyles = makeStyles(theme => ({
 
 const Form = () => {
   const classes = useStyles();
-  const [selectedEventDate, setEventDate] = useState(new Date());
-  const [selectedSubmissionDate, setSubmissionDate] = useState(new Date());
+  const [eventName, setEventName] = useState('');
+  const [eventLink, setEventLink] = useState('');
+  const [eventDate, setEventDate] = useState(new Date());
+  const [submissionDate, setSubmissionDate] = useState(new Date());
+  const [contactName, setContactName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
 
-  const onEventDateChange = date => {
-    setEventDate(date);
+  const handleDateChange = setDate => date => {
+    setDate(date);
   };
-
-  const onSubmissionDateChange = date => {
-    setSubmissionDate(date);
+  const handleInputFieldChange = setValue => event => {
+    setValue(event.target.value);
   };
 
   return (
-    <form className={classes.root}>
-      <TextField
-        id="standard-name"
-        label="Event Name"
-        placeholder="Event Name"
-        className={classes.inputField}
-      />
-      <TextField
-        id="standard-name"
-        label="Event Website"
-        placeholder="Event Website"
-        className={classes.inputField}
-      />
-      <MuiPickersUtilsProvider utils={Moment}>
-        <DatePicker
+    <div>
+      <p>Event Details: {eventName} {eventLink}</p>
+      <p>Event Date: {eventDate.toString()}</p>
+      <p>Submission Date: {submissionDate.toString()}</p>
+      <p>Contact Info: {contactName} {contactEmail}</p>
+      <form className={classes.root}>
+        <TextField
+          id="standard-name"
+          label="Event Name"
+          placeholder="Name of my event"
           className={classes.inputField}
-          label="Event Date"
-          value={selectedEventDate}
-          onChange={onEventDateChange}/>
-      </MuiPickersUtilsProvider>
-      <TextField
-        id="standard-name"
-        label="Joanna's Location input here"
-        placeholder="Joanna's Location input here"
-        className={classes.inputField}
-      />
-      <Divider className={classes.divider}/>
-      <MuiPickersUtilsProvider utils={Moment}>
-        <DatePicker
-          className={classes.inputField}
-          label="Submission Date"
-          value={selectedSubmissionDate}
-          onChange={onSubmissionDateChange}
+          value={eventName}
+          onChange={handleInputFieldChange(setEventName)}
         />
-      </MuiPickersUtilsProvider>
-      <TextField
-        id="standard-name"
-        label="Submission Website"
-        placeholder="Submission Website"
-        className={classes.inputField}
-      />
-      <Divider className={classes.divider}/>
-      <TextField
-        id="standard-name"
-        label="Contact Name"
-        placeholder="Contact Name"
-        className={classes.inputField}
-      />
-      <TextField
-        id="standard-name"
-        label="Contact E-mail"
-        placeholder="Contact Email"
-        className={classes.inputField}
-      />
-      <Divider className={classes.divider}/>
-    </form>
+        <TextField
+          id="standard-name"
+          label="Event Link"
+          placeholder="Link to my event"
+          className={classes.inputField}
+          value={eventLink}
+          onChange={handleInputFieldChange(setEventLink)}
+        />
+        <MuiPickersUtilsProvider utils={Moment}>
+          <DatePicker
+            className={classes.inputField}
+            label="Event Date"
+            value={eventDate}
+            onChange={handleDateChange(setEventDate)}/>
+        </MuiPickersUtilsProvider>
+        <TextField
+          id="standard-name"
+          label="Event Location (Joanna)"
+          placeholder="Location of my event"
+          className={classes.inputField}
+        />
+        <Divider className={classes.divider}/>
+        <MuiPickersUtilsProvider utils={Moment}>
+          <DatePicker
+            className={classes.inputField}
+            label="Submission Date"
+            value={submissionDate}
+            onChange={handleDateChange(setSubmissionDate)}
+          />
+        </MuiPickersUtilsProvider>
+        <TextField
+          id="standard-name"
+          label="Submission Link"
+          placeholder="Link to my Submission Page"
+          className={classes.inputField}
+        />
+        <Divider className={classes.divider}/>
+        <TextField
+          id="standard-name"
+          label="Contact Name"
+          placeholder="My Name"
+          className={classes.inputField}
+          value={contactName}
+          onChange={handleInputFieldChange(setContactName)}
+        />
+        <TextField
+          id="standard-name"
+          label="Contact E-mail"
+          placeholder="My E-mail"
+          className={classes.inputField}
+          value={contactEmail}
+          onChange={handleInputFieldChange(setContactEmail)}
+        />
+        <Divider className={classes.divider}/>
+      </form>
+    </div>
   );
 };
 
