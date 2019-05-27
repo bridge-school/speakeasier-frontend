@@ -9,7 +9,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   header: {
     backgroundColor: '#FFF',
-    borderBottom: '1px solid #D9DCEF'
+    borderBottom: '1px solid #D9DCEF',
+    marginBottom: '30px'
   }
 }));
 
