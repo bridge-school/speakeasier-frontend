@@ -26,7 +26,7 @@ const FormPage = () => {
       <Header buttonText="Back To Conferences" path="/"/>
       <Container maxWidth="md">
         <h1 className={classes.title}>Submit an event</h1>
-        <Box p={4} lexGrow={1} textAlign="center" className={classes.body}>
+        <Box p={4} flexGrow={1} textAlign="center" className={classes.body}>
           <Form/>
         </Box>
       </Container>
