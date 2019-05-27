@@ -7,7 +7,7 @@ const HomePage = () => (
   <>
     <Header buttonText="Submit Conference" path="/submit-conference" />
     <Container maxWidth="md">
-      <Box my={4} flexGrow={1} textAlign="center">
+      <Box flexGrow={1} textAlign="center">
         <h1>Home Page</h1>
       </Box>
     </Container>
