@@ -1,9 +1,24 @@
-import React, { useState } from "react";
-import Container from "@material-ui/core/Container";
-import Moment from "@date-io/moment";
-import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Moment from '@date-io/moment';
+import TextField from '@material-ui/core/TextField';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    textAlign: 'center'
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 300,
+    marginTop: 20
+  }
+}));
 
 const Form = () => {
+  const classes = useStyles();
   const [selectedEventDate, setEventDate] = useState(new Date());
   const [selectedSubmissionDate, setSubmissionDate] = useState(new Date());
 
@@ -16,19 +31,47 @@ const Form = () => {
   };
 
   return (
-    <Container>
+    <form className={classes.root}>
+      <TextField
+        id="standard-name"
+        label="Event Name"
+        defaultValue="My Event Name"
+        className={classes.textField}
+      />
+      <TextField
+        id="standard-name"
+        label="Event Link"
+        defaultValue="My Event Website"
+        className={classes.textField}
+      />
       <MuiPickersUtilsProvider utils={Moment}>
-        <h4>Event Date</h4>
-        <DatePicker value={selectedEventDate} onChange={onEventDateChange} />
+        <DatePicker
+          className={classes.textField}
+          label="Event Date"
+          value={selectedEventDate}
+          onChange={onEventDateChange}/>
       </MuiPickersUtilsProvider>
       <MuiPickersUtilsProvider utils={Moment}>
-        <h4>Submission Date</h4>
         <DatePicker
+          className={classes.textField}
+          label="Submission Date"
           value={selectedSubmissionDate}
           onChange={onSubmissionDateChange}
         />
       </MuiPickersUtilsProvider>
-    </Container>
+      <TextField
+        id="standard-name"
+        label="Contact Name"
+        defaultValue="My Name"
+        className={classes.textField}
+      />
+      <TextField
+        id="standard-name"
+        label="Contact E-mail"
+        defaultValue="My E-mail"
+        className={classes.textField}
+      />
+    </form>
   );
 };
 
