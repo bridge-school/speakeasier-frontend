@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     textAlign: 'center'
   },
-  textField: {
+  inputField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: 300,
@@ -36,24 +36,24 @@ const Form = () => {
         id="standard-name"
         label="Event Name"
         defaultValue="My Event Name"
-        className={classes.textField}
+        className={classes.inputField}
       />
       <TextField
         id="standard-name"
         label="Event Link"
         defaultValue="My Event Website"
-        className={classes.textField}
+        className={classes.inputField}
       />
       <MuiPickersUtilsProvider utils={Moment}>
         <DatePicker
-          className={classes.textField}
+          className={classes.inputField}
           label="Event Date"
           value={selectedEventDate}
           onChange={onEventDateChange}/>
       </MuiPickersUtilsProvider>
       <MuiPickersUtilsProvider utils={Moment}>
         <DatePicker
-          className={classes.textField}
+          className={classes.inputField}
           label="Submission Date"
           value={selectedSubmissionDate}
           onChange={onSubmissionDateChange}
@@ -63,13 +63,13 @@ const Form = () => {
         id="standard-name"
         label="Contact Name"
         defaultValue="My Name"
-        className={classes.textField}
+        className={classes.inputField}
       />
       <TextField
         id="standard-name"
         label="Contact E-mail"
         defaultValue="My E-mail"
-        className={classes.textField}
+        className={classes.inputField}
       />
     </form>
   );
