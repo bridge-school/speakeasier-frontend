@@ -35,13 +35,13 @@ const Form = () => {
       <TextField
         id="standard-name"
         label="Event Name"
-        defaultValue="My Event Name"
+        placeholder="My Event Name"
         className={classes.inputField}
       />
       <TextField
         id="standard-name"
         label="Event Link"
-        defaultValue="My Event Website"
+        placeholder="My Event Website"
         className={classes.inputField}
       />
       <MuiPickersUtilsProvider utils={Moment}>
@@ -62,13 +62,13 @@ const Form = () => {
       <TextField
         id="standard-name"
         label="Contact Name"
-        defaultValue="My Name"
+        placeholder="My Name"
         className={classes.inputField}
       />
       <TextField
         id="standard-name"
         label="Contact E-mail"
-        defaultValue="My E-mail"
+        placeholder="My E-mail"
         className={classes.inputField}
       />
     </form>
