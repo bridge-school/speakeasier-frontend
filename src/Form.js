@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Moment from '@date-io/moment';
 import TextField from '@material-ui/core/TextField';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import GooglePlacesAutocomplete from './GooglePlacesAutocomplete';
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles(theme => ({
@@ -15,10 +16,42 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    marginBottom: 30
+    marginBottom: 30,
+	width: '100%'
   },
   divider: {
     gridColumn: 'span 2'
+  },
+  autocomplete: {
+	  flex: 1,
+	  position: 'relative',
+	  marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+	  width: '100%',
+	  '& TextField': {
+		  flex: 1,
+	      marginLeft: theme.spacing(1),
+	      marginRight: theme.spacing(1),
+	      marginBottom: 30,
+	  	  width: '100%',
+	  },
+	  '& div':{
+		  position: 'relative',
+		  width: '100%'
+	  },
+	  '& ul': {
+		  position: 'absolute',
+		  background: 'white',
+		  zIndex: 5,
+		  top: '65%',
+		  boxShadow: '0px 5px 9px -4px rgba(0,0,0,0.38)'
+	  },
+	  '& p': {
+		  position: 'absolute',
+		 background: 'white',
+		 zIndex: 5,
+		 top: '75%',
+	  }
   }
 }));
 
@@ -37,6 +70,7 @@ const Form = () => {
 
   return (
     <form className={classes.root}>
+
       <TextField
         id="standard-name"
         label="Event Name"
@@ -56,12 +90,13 @@ const Form = () => {
           value={selectedEventDate}
           onChange={onEventDateChange}/>
       </MuiPickersUtilsProvider>
-      <TextField
-        id="standard-name"
-        label="Joanna's Location input here"
-        placeholder="Joanna's Location input here"
-        className={classes.inputField}
-      />
+
+	  <GooglePlacesAutocomplete
+		  id="standard-name"
+		  label="Event Location"
+		  className={classes.autocomplete}
+	  />
+
       <Divider className={classes.divider}/>
       <MuiPickersUtilsProvider utils={Moment}>
         <DatePicker
