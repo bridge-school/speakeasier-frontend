@@ -8,7 +8,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import TextField from '@material-ui/core/TextField';
 
-
 class GooglePlacesAutocomplete extends Component {
 	constructor(props) {
 		super(props);
@@ -57,13 +56,12 @@ class GooglePlacesAutocomplete extends Component {
 				onError={this.handleError}
 			>
 				{({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-					<div>
+					<div className={className}>
 						<TextField
 						  id={id}
 						  label={label}
-						  className={className}
-						  {...getInputProps()}
 						  error={errorStatus !== ''}
+						  {...getInputProps()}
 						/>
 
 						{loading && <p>Loading...</p>}

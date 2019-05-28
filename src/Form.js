@@ -16,10 +16,42 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    marginBottom: 30
+    marginBottom: 30,
+	width: '100%'
   },
   divider: {
     gridColumn: 'span 2'
+  },
+  autocomplete: {
+	  flex: 1,
+	  position: 'relative',
+	  marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+	  width: '100%',
+	  '& TextField': {
+		  flex: 1,
+	      marginLeft: theme.spacing(1),
+	      marginRight: theme.spacing(1),
+	      marginBottom: 30,
+	  	  width: '100%',
+	  },
+	  '& div':{
+		  position: 'relative',
+		  width: '100%'
+	  },
+	  '& ul': {
+		  position: 'absolute',
+		  background: 'white',
+		  zIndex: 5,
+		  top: '65%',
+		  boxShadow: '0px 5px 9px -4px rgba(0,0,0,0.38)'
+	  },
+	  '& p': {
+		  position: 'absolute',
+		 background: 'white',
+		 zIndex: 5,
+		 top: '75%',
+	  }
   }
 }));
 
@@ -62,7 +94,7 @@ const Form = () => {
 	  <GooglePlacesAutocomplete
 		  id="standard-name"
 		  label="Event Location"
-		  className={classes.inputField}
+		  className={classes.autocomplete}
 	  />
 
       <Divider className={classes.divider}/>
