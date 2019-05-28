@@ -38,7 +38,6 @@ const Form = () => {
 
   return (
     <form className={classes.root}>
-	<GooglePlacesAutocomplete />
 
       <TextField
         id="standard-name"
@@ -59,12 +58,13 @@ const Form = () => {
           value={selectedEventDate}
           onChange={onEventDateChange}/>
       </MuiPickersUtilsProvider>
-      <TextField
-        id="standard-name"
-        label="Joanna's Location input here"
-        placeholder="Joanna's Location input here"
-        className={classes.inputField}
-      />
+
+	  <GooglePlacesAutocomplete
+		  id="standard-name"
+		  label="Event Location"
+		  className={classes.inputField}
+	  />
+
       <Divider className={classes.divider}/>
       <MuiPickersUtilsProvider utils={Moment}>
         <DatePicker
