@@ -5,6 +5,11 @@ import TextField from '@material-ui/core/TextField';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import GooglePlacesAutocomplete from './GooglePlacesAutocomplete';
 import Divider from '@material-ui/core/Divider';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,6 +24,16 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 30,
 	width: '100%'
   },
+	radioField: {
+		gridColumn: 'span 2',
+		marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+		'& Legend': {
+			textAlign: 'left',
+			marginBottom: 10,
+			lineHeight: 1.3
+		}
+	},
   divider: {
     gridColumn: 'span 2'
   },
@@ -112,7 +127,45 @@ const Form = () => {
         placeholder="Submission Website"
         className={classes.inputField}
       />
+
+			<Divider className={classes.divider}/>
+
+			<FormControl component="fieldset" className={classes.radioField}>
+				<FormLabel component="legend">Are speakers compensated at your event?</FormLabel>
+				<RadioGroup
+				aria-label="Are speakers compensated at your event?"
+				name="compensation"
+				>
+					<FormControlLabel value="yes" control={<Radio color="primary" />} label="Yes" />
+					<FormControlLabel value="no" control={<Radio color="primary" />} label="No" />
+				</RadioGroup>
+			</FormControl>
+
+			<FormControl component="fieldset" className={classes.radioField}>
+				<FormLabel component="legend">Does your event have a publicly visible code of conduct?</FormLabel>
+				<RadioGroup
+				aria-label="Does your event have a publicly visible code of conduct?"
+				name="coc"
+				>
+					<FormControlLabel value="yes" control={<Radio color="primary" />} label="Yes" />
+					<FormControlLabel value="no" control={<Radio color="primary" />} label="No" />
+				</RadioGroup>
+			</FormControl>
+
+			<FormControl component="fieldset" className={classes.radioField}>
+				<FormLabel component="legend">Does your event provide diversity scholarships?</FormLabel>
+
+				<RadioGroup
+				 aria-label="Does your event provide diversity scholarships?"
+				 name="scholarships"
+				>
+					<FormControlLabel value="yes" control={<Radio color="primary" />} label="Yes" />
+					<FormControlLabel value="no" control={<Radio color="primary" />} label="No" />
+				</RadioGroup>
+			</FormControl>
+
       <Divider className={classes.divider}/>
+
       <TextField
         id="standard-name"
         label="Contact Name"
