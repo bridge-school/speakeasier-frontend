@@ -129,8 +129,6 @@ const Form = () => {
         className={classes.inputField}
       />
 
-      <Divider className={classes.divider}/>
-
       <FormControl component="fieldset" className={classes.radioField}>
         <FormLabel component="legend">Are speakers compensated at your event?</FormLabel>
         <RadioGroup
