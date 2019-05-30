@@ -23,51 +23,51 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     marginBottom: 30,
-	width: '100%'
+    width: '100%'
   },
-	radioField: {
-		gridColumn: 'span 2',
-		marginLeft: theme.spacing(1),
+  radioField: {
+    gridColumn: 'span 2',
+    marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-		'& Legend': {
-			textAlign: 'left',
-			marginBottom: 10,
-			lineHeight: 1.3
-		}
-	},
+    '& Legend': {
+      textAlign: 'left',
+      marginBottom: 10,
+      lineHeight: 1.3
+    }
+  },
   divider: {
     gridColumn: 'span 2'
   },
   autocomplete: {
-	  flex: 1,
-	  position: 'relative',
-	  marginLeft: theme.spacing(1),
+    flex: 1,
+    position: 'relative',
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: '100%',
+    '& TextField': {
+      flex: 1,
+      marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
-	  width: '100%',
-	  '& TextField': {
-		  flex: 1,
-	      marginLeft: theme.spacing(1),
-	      marginRight: theme.spacing(1),
-	      marginBottom: 30,
-	  	  width: '100%',
-	  },
-	  '& div':{
-		  position: 'relative',
-		  width: '100%'
-	  },
-	  '& ul': {
-		  position: 'absolute',
-		  background: 'white',
-		  zIndex: 5,
-		  top: '65%',
-		  boxShadow: '0px 5px 9px -4px rgba(0,0,0,0.38)'
-	  },
-	  '& p': {
-		  position: 'absolute',
-		 background: 'white',
-		 zIndex: 5,
-		 top: '75%',
-	  }
+      marginBottom: 30,
+      width: '100%'
+    },
+    '& div': {
+      position: 'relative',
+      width: '100%'
+    },
+    '& ul': {
+      position: 'absolute',
+      background: 'white',
+      zIndex: 5,
+      top: '65%',
+      boxShadow: '0px 5px 9px -4px rgba(0,0,0,0.38)'
+    },
+    '& p': {
+      position: 'absolute',
+      background: 'white',
+      zIndex: 5,
+      top: '75%'
+    }
   }
 }));
 
@@ -107,11 +107,11 @@ const Form = () => {
           onChange={onEventDateChange}/>
       </MuiPickersUtilsProvider>
 
-	  <GooglePlacesAutocomplete
-		  id="standard-name"
-		  label="Event Location"
-		  className={classes.autocomplete}
-	  />
+      <GooglePlacesAutocomplete
+        id="standard-name"
+        label="Event Location"
+        className={classes.autocomplete}
+      />
 
       <Divider className={classes.divider}/>
       <MuiPickersUtilsProvider utils={Moment}>
@@ -129,41 +129,41 @@ const Form = () => {
         className={classes.inputField}
       />
 
-			<Divider className={classes.divider}/>
+      <Divider className={classes.divider}/>
 
-			<FormControl component="fieldset" className={classes.radioField}>
-				<FormLabel component="legend">Are speakers compensated at your event?</FormLabel>
-				<RadioGroup
-				aria-label="Are speakers compensated at your event?"
-				name="compensation"
-				>
-					<FormControlLabel value="yes" control={<Radio color="primary" />} label="Yes" />
-					<FormControlLabel value="no" control={<Radio color="primary" />} label="No" />
-				</RadioGroup>
-			</FormControl>
+      <FormControl component="fieldset" className={classes.radioField}>
+        <FormLabel component="legend">Are speakers compensated at your event?</FormLabel>
+        <RadioGroup
+          aria-label="Are speakers compensated at your event?"
+          name="compensation"
+        >
+          <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
+          <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
+        </RadioGroup>
+      </FormControl>
 
-			<FormControl component="fieldset" className={classes.radioField}>
-				<FormLabel component="legend">Does your event have a publicly visible code of conduct?</FormLabel>
-				<RadioGroup
-				aria-label="Does your event have a publicly visible code of conduct?"
-				name="coc"
-				>
-					<FormControlLabel value="yes" control={<Radio color="primary" />} label="Yes" />
-					<FormControlLabel value="no" control={<Radio color="primary" />} label="No" />
-				</RadioGroup>
-			</FormControl>
+      <FormControl component="fieldset" className={classes.radioField}>
+        <FormLabel component="legend">Does your event have a publicly visible code of conduct?</FormLabel>
+        <RadioGroup
+          aria-label="Does your event have a publicly visible code of conduct?"
+          name="coc"
+        >
+          <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
+          <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
+        </RadioGroup>
+      </FormControl>
 
-			<FormControl component="fieldset" className={classes.radioField}>
-				<FormLabel component="legend">Does your event provide diversity scholarships?</FormLabel>
+      <FormControl component="fieldset" className={classes.radioField}>
+        <FormLabel component="legend">Does your event provide diversity scholarships?</FormLabel>
 
-				<RadioGroup
-				 aria-label="Does your event provide diversity scholarships?"
-				 name="scholarships"
-				>
-					<FormControlLabel value="yes" control={<Radio color="primary" />} label="Yes" />
-					<FormControlLabel value="no" control={<Radio color="primary" />} label="No" />
-				</RadioGroup>
-			</FormControl>
+        <RadioGroup
+          aria-label="Does your event provide diversity scholarships?"
+          name="scholarships"
+        >
+          <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
+          <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
+        </RadioGroup>
+      </FormControl>
 
       <Divider className={classes.divider}/>
 
@@ -181,12 +181,12 @@ const Form = () => {
       />
       <Divider className={classes.divider}/>
 
-			<Button
-				color="primary"
-				variant="contained"
-				>
-				Submit Event
-			</Button>
+      <Button
+        color="primary"
+        variant="contained"
+      >
+        Submit Event
+      </Button>
     </form>
   );
 };

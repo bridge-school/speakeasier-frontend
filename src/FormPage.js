@@ -32,7 +32,7 @@ const FormPage = () => {
       </Container>
     </>
   );
-}
+};
 
 
 export default FormPage;

@@ -31,13 +31,13 @@ const Header = ({ path, buttonText }) => {
             variant="contained"
             component={Link}
             to={path}
-            >
+          >
             {buttonText}
           </Button>
         </Box>
       </Container>
     </header>
   );
-}
+};
 
 export default Header;

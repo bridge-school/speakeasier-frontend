@@ -5,7 +5,7 @@ import Header from './Header';
 
 const HomePage = () => (
   <>
-    <Header buttonText="Submit Conference" path="/submit-conference" />
+    <Header buttonText="Submit Conference" path="/submit-conference"/>
     <Container maxWidth="md">
       <Box flexGrow={1} textAlign="center">
         <h1>Home Page</h1>
