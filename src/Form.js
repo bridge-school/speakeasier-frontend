@@ -10,6 +10,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -179,6 +180,13 @@ const Form = () => {
         className={classes.inputField}
       />
       <Divider className={classes.divider}/>
+
+			<Button
+				color="primary"
+				variant="contained"
+				>
+				Submit Event
+			</Button>
     </form>
   );
 };
