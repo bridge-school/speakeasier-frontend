@@ -1,86 +1,59 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
 
-class GooglePlacesAutocomplete extends Component {
-  constructor (props) {
-    super(props);
+const GooglePlacesAutocomplete = ({ className, label, id }) => {
+  const [address, setAddress] = useState('');
+  const [errorStatus, setErrorStatus] = useState('');
 
-    this.state = {
-      address: '',
-      errorStatus: ''
-    };
-  }
-
-  handleChange = val => {
-    //reset errorStatus to clear it from any previous sets
-    this.setState({
-      address: val,
-      errorStatus: ''
-    });
+  const changeAddress = address => {
+    setAddress(address);
   };
 
-  handleSelect = (address, placeId) => {
-    this.setState({
-      address
-    });
-  };
-
-  handleError = (status, clearSuggestions) => {
-    //place to handle errors from the Maps API e.g. no results found
-    //setting a generic error indicator on the TextField, but can be
-    //expanded to be more descriptive if desired
-
-    this.setState({
-      errorStatus: status
-    });
+  const showError = (errorStatus, clearSuggestions) => {
+    setErrorStatus(errorStatus);
 
     clearSuggestions();
   };
 
-  render () {
-    const { className, label, id } = this.props;
-    const { errorStatus } = this.state;
+  return (
+    <PlacesAutocomplete
+      value={address}
+      onChange={changeAddress}
+      onSelect={changeAddress}
+      onError={showError}
+    >
+      {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+        <div className={className}>
+          <TextField
+            id={id}
+            label={label}
+            error={errorStatus !== ''}
+            {...getInputProps()}
+          />
 
-    return (
-      <PlacesAutocomplete
-        value={this.state.address}
-        onChange={this.handleChange}
-        onSelect={this.handleSelect}
-        onError={this.handleError}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div className={className}>
-            <TextField
-              id={id}
-              label={label}
-              error={errorStatus !== ''}
-              {...getInputProps()}
-            />
+          {loading && <p>Loading...</p>}
 
-            {loading && <p>Loading...</p>}
-
-            {(!loading && suggestions.length > 0) &&
-            <List>
-              {suggestions.map(suggestion => {
-                return (
-                  <ListItem button
-                            {...getSuggestionItemProps(suggestion)}
-                  >
-                    <ListItemText primary={suggestion.description}/>
-                  </ListItem>
-                );
-              })}
-            </List>
-            }
-          </div>
-        )}
-      </PlacesAutocomplete>
-    );
-  }
-}
+          {(!loading && suggestions.length > 0) &&
+          <List>
+            {suggestions.map(suggestion => {
+              return (
+                <ListItem button
+                          {...getSuggestionItemProps(suggestion)}
+                >
+                  <ListItemText primary={suggestion.description}/>
+                </ListItem>
+              );
+            })}
+          </List>
+          }
+        </div>
+      )}
+    </PlacesAutocomplete>
+  );
+};
 
 export default GooglePlacesAutocomplete;
