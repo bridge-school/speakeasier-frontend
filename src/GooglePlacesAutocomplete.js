@@ -9,11 +9,11 @@ const GooglePlacesAutocomplete = ({ className, label, id }) => {
   const [address, setAddress] = useState('');
   const [errorStatus, setErrorStatus] = useState('');
 
-  const changeAddress = address => {
+  const handleAddressChange = address => {
     setAddress(address);
   };
 
-  const showError = (errorStatus, clearSuggestions) => {
+  const handleLocationError = (errorStatus, clearSuggestions) => {
     setErrorStatus(errorStatus);
 
     clearSuggestions();
@@ -22,9 +22,9 @@ const GooglePlacesAutocomplete = ({ className, label, id }) => {
   return (
     <PlacesAutocomplete
       value={address}
-      onChange={changeAddress}
-      onSelect={changeAddress}
-      onError={showError}
+      onChange={handleAddressChange}
+      onSelect={handleAddressChange}
+      onError={handleLocationError}
     >
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <div className={className}>

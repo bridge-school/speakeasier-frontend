@@ -76,11 +76,11 @@ const Form = () => {
   const [selectedEventDate, setEventDate] = useState(new Date());
   const [selectedSubmissionDate, setSubmissionDate] = useState(new Date());
 
-  const onEventDateChange = date => {
+  const handleEventDateChange = date => {
     setEventDate(date);
   };
 
-  const onSubmissionDateChange = date => {
+  const handleSubmissionDateChange = date => {
     setSubmissionDate(date);
   };
 
@@ -104,7 +104,7 @@ const Form = () => {
           className={classes.inputField}
           label="Event Date"
           value={selectedEventDate}
-          onChange={onEventDateChange}/>
+          onChange={handleEventDateChange}/>
       </MuiPickersUtilsProvider>
 
       <GooglePlacesAutocomplete
@@ -119,7 +119,7 @@ const Form = () => {
           className={classes.inputField}
           label="Submission Date"
           value={selectedSubmissionDate}
-          onChange={onSubmissionDateChange}
+          onChange={handleSubmissionDateChange}
         />
       </MuiPickersUtilsProvider>
       <TextField
