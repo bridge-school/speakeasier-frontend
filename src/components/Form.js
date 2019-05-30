@@ -68,6 +68,12 @@ const useStyles = makeStyles(theme => ({
       zIndex: 5,
       top: '75%'
     }
+  },
+  submitButton: {
+    marginTop: '30px',
+  },
+  alignLeft: {
+    textAlign: 'left'
   }
 }));
 
@@ -85,103 +91,104 @@ const Form = () => {
   };
 
   return (
-    <form className={classes.root}>
-
-      <TextField
-        id="standard-name"
-        label="Event Name"
-        placeholder="Event Name"
-        className={classes.inputField}
-      />
-      <TextField
-        id="standard-name"
-        label="Event Website"
-        placeholder="Event Website"
-        className={classes.inputField}
-      />
-      <MuiPickersUtilsProvider utils={Moment}>
-        <DatePicker
+    <form className={classes.alignLeft}>
+      <div className={classes.root}>
+        <TextField
+          id="standard-name"
+          label="Event Name"
+          placeholder="Event Name"
           className={classes.inputField}
-          label="Event Date"
-          value={selectedEventDate}
-          onChange={onEventDateChange}/>
-      </MuiPickersUtilsProvider>
-
-      <EventLocationField
-        id="standard-name"
-        label="Event Location"
-        className={classes.autocomplete}
-      />
-
-      <Divider className={classes.divider}/>
-      <MuiPickersUtilsProvider utils={Moment}>
-        <DatePicker
-          className={classes.inputField}
-          label="Submission Date"
-          value={selectedSubmissionDate}
-          onChange={onSubmissionDateChange}
         />
-      </MuiPickersUtilsProvider>
-      <TextField
-        id="standard-name"
-        label="Submission Website"
-        placeholder="Submission Website"
-        className={classes.inputField}
-      />
+        <TextField
+          id="standard-name"
+          label="Event Website"
+          placeholder="Event Website"
+          className={classes.inputField}
+        />
+        <MuiPickersUtilsProvider utils={Moment}>
+          <DatePicker
+            className={classes.inputField}
+            label="Event Date"
+            value={selectedEventDate}
+            onChange={onEventDateChange}/>
+        </MuiPickersUtilsProvider>
 
-      <FormControl component="fieldset" className={classes.radioField}>
-        <FormLabel component="legend">Are speakers compensated at your event?</FormLabel>
-        <RadioGroup
-          aria-label="Are speakers compensated at your event?"
-          name="compensation"
-        >
-          <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
-          <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
-        </RadioGroup>
-      </FormControl>
+        <EventLocationField
+          id="standard-name"
+          label="Event Location"
+          className={classes.autocomplete}
+        />
 
-      <FormControl component="fieldset" className={classes.radioField}>
-        <FormLabel component="legend">Does your event have a publicly visible code of conduct?</FormLabel>
-        <RadioGroup
-          aria-label="Does your event have a publicly visible code of conduct?"
-          name="coc"
-        >
-          <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
-          <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
-        </RadioGroup>
-      </FormControl>
+        <Divider className={classes.divider}/>
+        <MuiPickersUtilsProvider utils={Moment}>
+          <DatePicker
+            className={classes.inputField}
+            label="Submission Date"
+            value={selectedSubmissionDate}
+            onChange={onSubmissionDateChange}
+          />
+        </MuiPickersUtilsProvider>
+        <TextField
+          id="standard-name"
+          label="Submission Website"
+          placeholder="Submission Website"
+          className={classes.inputField}
+        />
 
-      <FormControl component="fieldset" className={classes.radioField}>
-        <FormLabel component="legend">Does your event provide diversity scholarships?</FormLabel>
+        <FormControl component="fieldset" className={classes.radioField}>
+          <FormLabel component="legend">Are speakers compensated at your event?</FormLabel>
+          <RadioGroup
+            aria-label="Are speakers compensated at your event?"
+            name="compensation"
+          >
+            <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
+            <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
+          </RadioGroup>
+        </FormControl>
 
-        <RadioGroup
-          aria-label="Does your event provide diversity scholarships?"
-          name="scholarships"
-        >
-          <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
-          <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
-        </RadioGroup>
-      </FormControl>
+        <FormControl component="fieldset" className={classes.radioField}>
+          <FormLabel component="legend">Does your event have a publicly visible code of conduct?</FormLabel>
+          <RadioGroup
+            aria-label="Does your event have a publicly visible code of conduct?"
+            name="coc"
+          >
+            <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
+            <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
+          </RadioGroup>
+        </FormControl>
 
-      <Divider className={classes.divider}/>
+        <FormControl component="fieldset" className={classes.radioField}>
+          <FormLabel component="legend">Does your event provide diversity scholarships?</FormLabel>
 
-      <TextField
-        id="standard-name"
-        label="Contact Name"
-        placeholder="Contact Name"
-        className={classes.inputField}
-      />
-      <TextField
-        id="standard-name"
-        label="Contact E-mail"
-        placeholder="Contact Email"
-        className={classes.inputField}
-      />
-      <Divider className={classes.divider}/>
+          <RadioGroup
+            aria-label="Does your event provide diversity scholarships?"
+            name="scholarships"
+          >
+            <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
+            <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
+          </RadioGroup>
+        </FormControl>
 
+        <Divider className={classes.divider}/>
+
+        <TextField
+          id="standard-name"
+          label="Contact Name"
+          placeholder="Contact Name"
+          className={classes.inputField}
+        />
+        <TextField
+          id="standard-name"
+          label="Contact E-mail"
+          placeholder="Contact Email"
+          className={classes.inputField}
+        />
+        <Divider className={classes.divider}/>
+      </div>
       <Button
         color="primary"
         variant="contained"
+        className={classes.submitButton}
       >
         Submit Event
       </Button>
