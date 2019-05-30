@@ -71,22 +71,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Form = () => {
+const SubmissionForm = () => {
   const classes = useStyles();
   const [selectedEventDate, setEventDate] = useState(new Date());
   const [selectedSubmissionDate, setSubmissionDate] = useState(new Date());
 
-  const onEventDateChange = date => {
+  const handleEventDateChange = date => {
     setEventDate(date);
   };
 
-  const onSubmissionDateChange = date => {
+  const handleSubmissionDateChange = date => {
     setSubmissionDate(date);
   };
 
   return (
     <form className={classes.root}>
-
       <TextField
         id="standard-name"
         label="Event Name"
@@ -104,7 +103,7 @@ const Form = () => {
           className={classes.inputField}
           label="Event Date"
           value={selectedEventDate}
-          onChange={onEventDateChange}/>
+          onChange={handleEventDateChange}/>
       </MuiPickersUtilsProvider>
 
       <EventLocationField
@@ -119,7 +118,7 @@ const Form = () => {
           className={classes.inputField}
           label="Submission Date"
           value={selectedSubmissionDate}
-          onChange={onSubmissionDateChange}
+          onChange={handleSubmissionDateChange}
         />
       </MuiPickersUtilsProvider>
       <TextField
@@ -191,4 +190,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default SubmissionForm;
