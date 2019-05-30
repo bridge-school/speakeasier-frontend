@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Header from './Header';
 
-const HomePage = () => (
+const ConferenceListPage = () => (
   <>
     <Header buttonText="Submit Conference" path="/submit-conference"/>
     <Container maxWidth="md">
@@ -14,4 +14,4 @@ const HomePage = () => (
   </>
 );
 
-export default HomePage;
+export default ConferenceListPage;

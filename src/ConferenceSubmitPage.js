@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Header from './Header';
-import Form from './Form';
+import SubmissionForm from './SubmissionForm';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const FormPage = () => {
+const ConferenceSubmitPage = () => {
   const classes = useStyles();
 
   return (
@@ -27,7 +27,7 @@ const FormPage = () => {
       <Container maxWidth="md">
         <h1 className={classes.title}>Submit an event</h1>
         <Box p={4} flexGrow={1} textAlign="center" className={classes.body}>
-          <Form/>
+          <SubmissionForm/>
         </Box>
       </Container>
     </>
@@ -35,4 +35,4 @@ const FormPage = () => {
 };
 
 
-export default FormPage;
+export default ConferenceSubmitPage;

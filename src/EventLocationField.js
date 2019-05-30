@@ -5,7 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
 
-const GooglePlacesAutocomplete = ({ className, label, id }) => {
+const EventLocationField = ({ className, label, id }) => {
   const [address, setAddress] = useState('');
   const [errorStatus, setErrorStatus] = useState('');
 
@@ -56,4 +56,4 @@ const GooglePlacesAutocomplete = ({ className, label, id }) => {
   );
 };
 
-export default GooglePlacesAutocomplete;
+export default EventLocationField;

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import FormPage from './FormPage';
-import HomePage from './HomePage';
+import ConferenceSubmitPage from './ConferenceSubmitPage';
+import ConferenceListPage from './ConferenceListPage';
 
 const App = () =>
   <Router>
-    <Route exact path="/" component={HomePage}/>
-    <Route path="/submit-conference" component={FormPage}/>
+    <Route exact path="/" component={ConferenceListPage}/>
+    <Route path="/submit-conference" component={ConferenceSubmitPage}/>
   </Router>;
 
 
