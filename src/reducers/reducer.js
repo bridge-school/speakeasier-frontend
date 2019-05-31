@@ -1,16 +1,19 @@
 const initialState = {
-  event: []
+  events: []
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SUBMIT_EVENT":
-      state = {
+      return {
         ...state,
         events: action.payload
       };
-      return state;
-
+		case "GET_EVENTS":
+			return {
+				...state,
+				events: action.payload
+			}
     default:
       return initialState;
   }
