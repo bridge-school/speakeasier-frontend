@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Form from "../components/Form";
-import submitEvents from "../actions/actions";
+import { submitEvent } from "../actions/actions";
 
 function mapStateToProps(state) {
   return {
@@ -9,7 +9,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  submitEvents
+  submitEvent
 };
 
 const FormCtn = connect(
