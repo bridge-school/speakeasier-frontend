@@ -1,8 +1,3 @@
-export const setEventName = payload => ({
-  type: 'SET_EVENT_NAME',
-  payload
-});
-
 export const submitEvent = payload => ({
   type: 'SUBMIT_EVENT',
   payload
@@ -10,7 +5,7 @@ export const submitEvent = payload => ({
 
 export const postEvent = formData => {
   return (dispatch) => {
-    fetch(`http://speakeasier-backend.bridgeschoolapp.io/conferences`, {
+    return fetch(`http://speakeasier-backend.bridgeschoolapp.io/conferences`, {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {

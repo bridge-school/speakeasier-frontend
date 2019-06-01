@@ -11,6 +11,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -77,7 +78,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Form = ({ submitEvent }) => {
+const Form = ({ history, submitEvent }) => {
   const classes = useStyles();
   const [formData, setFormData] = useState({
     eventName: '',
@@ -116,6 +117,10 @@ const Form = ({ submitEvent }) => {
       eventDate: formData.eventDate.unix(),
       submissionDate: formData.submissionDate.unix()
     })
+    .then(() => {
+      history.push('/')
+    })
+
   }
 
   return (
@@ -254,4 +259,4 @@ const Form = ({ submitEvent }) => {
   );
 };
 
-export default Form;
+export default withRouter(Form);
