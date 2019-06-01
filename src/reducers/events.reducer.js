@@ -22,6 +22,11 @@ const eventsReducer = (state = initialState, action) => {
         isLoading: false,
         error: true
       };
+    case 'SUBMIT_EVENT':
+      return {
+        ...initialState,
+        events: [action.payload, ...state.events]
+      };
     default:
       return initialState;
   }
