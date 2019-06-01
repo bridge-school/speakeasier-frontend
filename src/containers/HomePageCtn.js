@@ -4,7 +4,7 @@ import { getConferences } from "../actions/actions";
 
 function mapStateToProps (state) {
   return {
-    events: state.events
+    events: state.eventsReducer.events
   };
 }
 

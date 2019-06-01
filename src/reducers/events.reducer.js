@@ -2,7 +2,7 @@ const initialState = {
   events: []
 };
 
-export const reducer = (state = initialState, action) => {
+const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SUBMIT_EVENT":
       return {
@@ -18,3 +18,5 @@ export const reducer = (state = initialState, action) => {
       return initialState;
   }
 };
+
+export default eventsReducer;

@@ -10,7 +10,7 @@ const HomePage = ({ events, getConferences }) => {
   }, [getConferences]);
 
   return (
-    <>
+    <div>
       <Header buttonText="Submit Conference" path="/submit-conference"/>
       <Container maxWidth="md">
         <Box flexGrow={1} textAlign="center">
@@ -18,7 +18,7 @@ const HomePage = ({ events, getConferences }) => {
           <p>{events.length > 0 && events.map(event => event.name)}</p>
         </Box>
       </Container>
-    </>
+    </div>
   );
 };
 
