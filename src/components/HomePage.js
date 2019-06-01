@@ -17,7 +17,7 @@ const HomePage = ({ events, isLoading, error, getEvents }) => {
         <Box flexGrow={1} textAlign="center">
           <h1>Home Page</h1>
           {isLoading && <LinearProgress/>}
-          {error ? <div>Unable to fetch events. Please try again</div> : null}
+          {error && <div>Unable to fetch events. Please try again</div>}
           <p>{events.map(event => event.name)}</p>
         </Box>
       </Container>
