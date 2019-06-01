@@ -77,7 +77,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Form = () => {
+const Form = ({ name, formData, setEventName, submitEvent }) => {
   const classes = useStyles();
   const [selectedEventDate, setEventDate] = useState(new Date());
   const [selectedSubmissionDate, setSubmissionDate] = useState(new Date());
@@ -90,14 +90,22 @@ const Form = () => {
     setSubmissionDate(date);
   };
 
+  const onSubmit = event => {
+    event.preventDefault();
+
+    submitEvent(formData)
+  }
+
   return (
-    <form className={classes.alignLeft}>
+    <form className={classes.alignLeft} onSubmit={onSubmit}>
       <div className={classes.root}>
         <TextField
           id="standard-name"
           label="Event Name"
           placeholder="Event Name"
           className={classes.inputField}
+          value={name}
+          onChange={event => setEventName(event.target.value)}
         />
         <TextField
           id="standard-name"
@@ -189,6 +197,7 @@ const Form = () => {
         color="primary"
         variant="contained"
         className={classes.submitButton}
+        type="submit"
       >
         Submit Event
       </Button>
