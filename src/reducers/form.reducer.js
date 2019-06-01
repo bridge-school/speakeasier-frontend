@@ -1,13 +1,18 @@
 const initialState = {
-  event: null
+  name: ''
 };
 
 const formReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'SET_EVENT_NAME':
+      return {
+        ...state,
+        name: action.payload
+      };
     case 'SUBMIT_EVENT':
       return {
         ...state,
-        event: action.payload
+        name: action.payload
       };
     default:
       return initialState;
