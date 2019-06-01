@@ -77,23 +77,45 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Form = ({ name, formData, setEventName, submitEvent }) => {
+const Form = ({ submitEvent }) => {
   const classes = useStyles();
-  const [selectedEventDate, setEventDate] = useState(new Date());
-  const [selectedSubmissionDate, setSubmissionDate] = useState(new Date());
+  const [formData, setFormData] = useState({
+    eventName: '',
+    eventWebsite: '',
+    eventDate: new Date(),
+    location: '',
+    submissionDate: new Date(),
+    submissionWebsite: '',
+    compensation: null,
+    coc: null,
+    scholarships: null,
+    contactName: '',
+    contactEmail: ''
+  });
 
-  const onEventDateChange = date => {
-    setEventDate(date);
-  };
+  const handleChange = event => setFormData({
+    ...formData,
+    [event.target.name]: event.target.value
+  });
 
-  const onSubmissionDateChange = date => {
-    setSubmissionDate(date);
-  };
+  const handleDateChange = name => date => setFormData({
+    ...formData,
+    [name]: date
+  });
+
+  const handleSetLocation = address => setFormData({
+    ...formData,
+    location: address
+  });
 
   const onSubmit = event => {
     event.preventDefault();
 
-    submitEvent(formData)
+    submitEvent({
+      ...formData,
+      eventDate: formData.eventDate.unix(),
+      submissionDate: formData.submissionDate.unix()
+    })
   }
 
   return (
@@ -103,43 +125,57 @@ const Form = ({ name, formData, setEventName, submitEvent }) => {
           id="standard-name"
           label="Event Name"
           placeholder="Event Name"
+          name="eventName"
+          value={formData.eventName}
           className={classes.inputField}
-          value={name}
-          onChange={event => setEventName(event.target.value)}
+          onChange={handleChange}
         />
         <TextField
           id="standard-name"
           label="Event Website"
           placeholder="Event Website"
+          name="eventWebsite"
+          onChange={handleChange}
+          value={formData.eventWebsite}
           className={classes.inputField}
         />
+
         <MuiPickersUtilsProvider utils={Moment}>
           <DatePicker
             className={classes.inputField}
             label="Event Date"
-            value={selectedEventDate}
-            onChange={onEventDateChange}/>
+            name="eventDate"
+            value={formData.eventDate}
+            onChange={handleDateChange('eventDate')} />
         </MuiPickersUtilsProvider>
 
         <EventLocationField
           id="standard-name"
           label="Event Location"
+          name="location"
+          value={formData.location}
+          onChange={handleSetLocation}
+          onSelect={handleSetLocation}
           className={classes.autocomplete}
         />
 
         <Divider className={classes.divider}/>
+
         <MuiPickersUtilsProvider utils={Moment}>
           <DatePicker
             className={classes.inputField}
             label="Submission Date"
-            value={selectedSubmissionDate}
-            onChange={onSubmissionDateChange}
+            value={formData.submissionDate}
+            onChange={handleDateChange('submissionDate')}
           />
         </MuiPickersUtilsProvider>
         <TextField
           id="standard-name"
           label="Submission Website"
           placeholder="Submission Website"
+          name="submissionWebsite"
+          value={formData.submissionWebsite}
+          onChange={handleChange}
           className={classes.inputField}
         />
 
@@ -148,6 +184,8 @@ const Form = ({ name, formData, setEventName, submitEvent }) => {
           <RadioGroup
             aria-label="Are speakers compensated at your event?"
             name="compensation"
+            checked={formData.compensation}
+            onChange={handleChange}
           >
             <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
             <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
@@ -159,6 +197,8 @@ const Form = ({ name, formData, setEventName, submitEvent }) => {
           <RadioGroup
             aria-label="Does your event have a publicly visible code of conduct?"
             name="coc"
+            checked={formData.coc}
+            onChange={handleChange}
           >
             <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
             <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
@@ -171,6 +211,8 @@ const Form = ({ name, formData, setEventName, submitEvent }) => {
           <RadioGroup
             aria-label="Does your event provide diversity scholarships?"
             name="scholarships"
+            checked={formData.scholarships}
+            onChange={handleChange}
           >
             <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
             <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
@@ -183,16 +225,23 @@ const Form = ({ name, formData, setEventName, submitEvent }) => {
           id="standard-name"
           label="Contact Name"
           placeholder="Contact Name"
+          name="contactName"
+          value={formData.contactName}
+          onChange={handleChange}
           className={classes.inputField}
         />
         <TextField
           id="standard-name"
           label="Contact E-mail"
           placeholder="Contact Email"
+          name="contactEmail"
+          value={formData.contactEmail}
+          onChange={handleChange}
           className={classes.inputField}
         />
         <Divider className={classes.divider}/>
       </div>
+
       <Button
         color="primary"
         variant="contained"
