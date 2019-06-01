@@ -4,7 +4,9 @@ import { fetchEvents } from '../actions/events.actions';
 
 function mapStateToProps (state) {
   return {
-    events: state.eventsState.events
+    isLoading: state.eventsState.isLoading,
+    events: state.eventsState.events,
+    error: state.eventsState.error
   };
 }
 
