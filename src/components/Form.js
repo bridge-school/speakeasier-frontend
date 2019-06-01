@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   submitButton: {
-    marginTop: '30px',
+    marginTop: '30px'
   },
   alignLeft: {
     textAlign: 'left'

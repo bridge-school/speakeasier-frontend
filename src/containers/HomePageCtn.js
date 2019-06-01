@@ -1,29 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
-import HomePage from "../components/HomePage";
-import { getConferences } from "../actions/actions";
+import { connect } from 'react-redux';
+import HomePage from '../components/HomePage';
+import { fetchEvents } from '../actions/events.actions';
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
-    events: state.events
+    isLoading: state.eventsState.isLoading,
+    events: state.eventsState.events,
+    error: state.eventsState.error
   };
 }
 
 const mapDispatchToProps = {
-  getConferences
+  getEvents: fetchEvents
 };
 
-class HomePageCtn extends Component {
-	componentDidMount() {
-		this.props.getConferences();
-	}
-
-	render() {
-		return <HomePage events={this.props.events} />
-	}
-}
-
-export default connect(
+const HomePageCtn = connect(
   mapStateToProps,
   mapDispatchToProps
-)(HomePageCtn);
+)(HomePage);
+
+export default HomePageCtn;

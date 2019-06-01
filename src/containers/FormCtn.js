@@ -1,10 +1,10 @@
-import { connect } from "react-redux";
-import Form from "../components/Form";
-import { submitEvent } from "../actions/actions";
+import { connect } from 'react-redux';
+import Form from '../components/Form';
+import { submitEvent } from '../actions/form.actions';
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
-    event: state.event
+    event: state.formState.event
   };
 }
 
