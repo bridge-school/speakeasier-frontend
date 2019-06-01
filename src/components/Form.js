@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Moment from '@date-io/moment';
 import TextField from '@material-ui/core/TextField';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import EventLocationField from './EventLocationField';
 import Divider from '@material-ui/core/Divider';
 import Radio from '@material-ui/core/Radio';
@@ -71,7 +72,9 @@ const useStyles = makeStyles(theme => ({
     }
   },
   submitButton: {
-    marginTop: '30px'
+    marginTop: '30px',
+    minWidth: '150px',
+    textAlign: 'center'
   },
   alignLeft: {
     textAlign: 'left'
@@ -80,6 +83,7 @@ const useStyles = makeStyles(theme => ({
 
 const Form = ({ history, submitEvent }) => {
   const classes = useStyles();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     eventName: '',
     eventWebsite: '',
@@ -112,6 +116,8 @@ const Form = ({ history, submitEvent }) => {
   const onSubmit = event => {
     event.preventDefault();
 
+    setIsLoading(true);
+
     submitEvent({
       ...formData,
       eventDate: formData.eventDate.unix(),
@@ -119,6 +125,9 @@ const Form = ({ history, submitEvent }) => {
     })
     .then(() => {
       history.push('/')
+    })
+    .finally(() => {
+      setIsLoading(false);
     })
 
   }
@@ -252,8 +261,10 @@ const Form = ({ history, submitEvent }) => {
         variant="contained"
         className={classes.submitButton}
         type="submit"
+        disabled={isLoading}
       >
-        Submit Event
+        {isLoading && <CircularProgress color="white" size={24} />}
+        {!isLoading && 'Submit Event'}
       </Button>
     </form>
   );
