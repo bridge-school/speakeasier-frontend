@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import eventsReducer from './events.reducer';
+import eventsState from './events.reducer';
+import formState from './form.reducer';
 
 const appReducer = combineReducers({
-  eventsReducer
+  eventsState,
+  formState
 });
 
 export default appReducer;

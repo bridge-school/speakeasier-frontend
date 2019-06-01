@@ -4,16 +4,11 @@ const initialState = {
 
 const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SUBMIT_EVENT":
+    case 'GET_EVENTS':
       return {
         ...state,
         events: action.payload
       };
-		case "GET_EVENTS":
-			return {
-				...state,
-				events: action.payload
-			}
     default:
       return initialState;
   }

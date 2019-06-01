@@ -3,11 +3,11 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Header from './Header';
 
-const HomePage = ({ events, getConferences }) => {
+const HomePage = ({ events, getEvents }) => {
 
   useEffect(() => {
-    getConferences();
-  }, [getConferences]);
+    getEvents();
+  }, [getEvents]);
 
   return (
     <div>

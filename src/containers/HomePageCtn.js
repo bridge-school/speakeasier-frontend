@@ -1,18 +1,18 @@
-import { connect } from "react-redux";
-import HomePage from "../components/HomePage";
-import { getConferences } from "../actions/actions";
+import { connect } from 'react-redux';
+import HomePage from '../components/HomePage';
+import { fetchEvents } from '../actions/events.actions';
 
 function mapStateToProps (state) {
   return {
-    events: state.eventsReducer.events
+    events: state.eventsState.events
   };
 }
 
 const mapDispatchToProps = {
-  getConferences
+  getEvents: fetchEvents
 };
 
-const HomePageCtn  = connect(
+const HomePageCtn = connect(
   mapStateToProps,
   mapDispatchToProps
 )(HomePage);
