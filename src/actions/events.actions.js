@@ -27,7 +27,7 @@ export const createEventErrored = () => ({
 export const fetchEvents = () => {
   return (dispatch) => {
     dispatch(getEventsStarted());
-    fetch(`http://localhost:8081/conferences`)
+    fetch(`http://speakeasier-backend.bridgeschoolapp.io/conferences`)
       .then(res => !res.ok ? Promise.reject('Something went wrong :(') : res.json())
       .then(events => {
         dispatch(getEventsSucceeded(events.data));
@@ -39,7 +39,7 @@ export const fetchEvents = () => {
 export const addEvent = formData => {
   return (dispatch) => {
     dispatch(createEventStarted());
-    return fetch(`http://localhost:8081/conferences`, {
+    return fetch(`http://speakeasier-backend.bridgeschoolapp.io/conferences`, {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {
