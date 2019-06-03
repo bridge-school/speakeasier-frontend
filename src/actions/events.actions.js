@@ -11,9 +11,17 @@ export const getEventsErrored = () => ({
   type: 'GET_EVENTS_ERRORED'
 });
 
-export const createEvent = payload => ({
-  type: 'CREATE_EVENT',
+export const createEventStarted = () => ({
+  type: 'CREATE_EVENT_STARTED'
+});
+
+export const createEventSucceeded = payload => ({
+  type: 'CREATE_EVENT_SUCCEEDED',
   payload
+});
+
+export const createEventErrored = () => ({
+  type: 'CREATE_EVENT_ERRORED'
 });
 
 export const fetchEvents = () => {
@@ -30,6 +38,7 @@ export const fetchEvents = () => {
 
 export const addEvent = formData => {
   return (dispatch) => {
+    dispatch(createEventStarted());
     return fetch(`http://localhost:8081/conferences`, {
       method: 'POST',
       body: JSON.stringify(formData),
@@ -39,8 +48,11 @@ export const addEvent = formData => {
     })
       .then(res => !res.ok ? Promise.reject('Something went wrong :(') : res.json())
       .then(event => {
-        dispatch(createEvent(event));
+        dispatch(createEventSucceeded(event));
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err)
+        dispatch(createEventErrored(err))
+      });
   };
 };

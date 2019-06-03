@@ -1,14 +1,16 @@
 const initialState = {
   events: [],
-  isLoading: true,
+  isLoading: false,
   error: false
 };
 
 const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_EVENTS_STARTED':
+    case 'CREATE_EVENT_STARTED':
       return {
-        ...state
+        ...state,
+        isLoading: true
       };
     case 'GET_EVENTS_SUCCEEDED':
       return {
@@ -16,13 +18,16 @@ const eventsReducer = (state = initialState, action) => {
         isLoading: false,
         events: action.payload
       };
+
+    case 'CREATE_EVENT_ERRORED':
     case 'GET_EVENTS_ERRORED':
       return {
         ...initialState,
         isLoading: false,
         error: true
       };
-    case 'CREATE_EVENT':
+
+    case 'CREATE_EVENT_SUCCEEDED':
       return {
         ...initialState,
         events: [action.payload, ...state.events]

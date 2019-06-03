@@ -78,12 +78,14 @@ const useStyles = makeStyles(theme => ({
   },
   alignLeft: {
     textAlign: 'left'
+  },
+  spinner: {
+    color: '#424242'
   }
 }));
 
-const Form = ({ history, addEvent }) => {
+const Form = ({ history, addEvent, isLoading }) => {
   const classes = useStyles();
-  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     eventName: '',
     eventWebsite: '',
@@ -116,8 +118,6 @@ const Form = ({ history, addEvent }) => {
   const onSubmit = event => {
     event.preventDefault();
 
-    setIsLoading(true);
-
     addEvent({
       ...formData,
       eventDate: formData.eventDate.unix(),
@@ -126,10 +126,6 @@ const Form = ({ history, addEvent }) => {
     .then(() => {
       history.push('/')
     })
-    .catch(() => {
-      setIsLoading(false);
-    })
-
   }
 
   return (
@@ -263,7 +259,7 @@ const Form = ({ history, addEvent }) => {
         type="submit"
         disabled={isLoading}
       >
-        {isLoading && <CircularProgress color="white" size={24} />}
+        {isLoading && <CircularProgress className={classes.spinner} size={24} />}
         {!isLoading && 'Submit Event'}
       </Button>
     </form>
