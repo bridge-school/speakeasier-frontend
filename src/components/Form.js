@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Form = ({ history, submitEvent }) => {
+const Form = ({ history, addEvent }) => {
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -118,7 +118,7 @@ const Form = ({ history, submitEvent }) => {
 
     setIsLoading(true);
 
-    submitEvent({
+    addEvent({
       ...formData,
       eventDate: formData.eventDate.unix(),
       submissionDate: formData.submissionDate.unix()
@@ -126,7 +126,7 @@ const Form = ({ history, submitEvent }) => {
     .then(() => {
       history.push('/')
     })
-    .finally(() => {
+    .catch(() => {
       setIsLoading(false);
     })
 

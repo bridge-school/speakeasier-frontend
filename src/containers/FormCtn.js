@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import Form from '../components/Form';
-import { postEvent } from '../actions/form.actions';
+import { addEvent } from '../actions/events.actions';
 
 const mapDispatchToProps = {
-  submitEvent: postEvent
+  addEvent: addEvent
 };
 
 const FormCtn = connect(

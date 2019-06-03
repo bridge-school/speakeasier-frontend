@@ -22,7 +22,7 @@ const eventsReducer = (state = initialState, action) => {
         isLoading: false,
         error: true
       };
-    case 'SUBMIT_EVENT':
+    case 'CREATE_EVENT':
       return {
         ...initialState,
         events: [action.payload, ...state.events]
