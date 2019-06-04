@@ -14,7 +14,7 @@ const EventList = ({ events, test }) => {
   return (
     <div className={classes.root}>
       {events.map(event => (
-        <EventListItem event={event} />
+        <EventListItem event={event} key={event.id}/>
       ))}
     </div>
   );

@@ -54,14 +54,14 @@ const EventListItem = ({ event }) => {
         <Grid container>
           <Grid item xs={12}>
             <Typography
-              variant="p"
+              variant="inherit"
               color="textSecondary"
               gutterBottom
               className={classes.eventDate}
             >
               {moment.unix(event.eventDate).format("ll")}
             </Typography>
-            <Typography variant="p" color="textSecondary" gutterBottom>
+            <Typography variant="inherit" color="textSecondary" gutterBottom>
               - {event.location}
             </Typography>
           </Grid>
@@ -69,19 +69,19 @@ const EventListItem = ({ event }) => {
 
         <Grid container className={classes.extras}>
           <Grid item xs={4}>
-            <Typography variant="p" color="textPrimary" gutterBottom>
+            <Typography variant="inherit" color="textPrimary" gutterBottom>
               Compensation: {event.compensation}
             </Typography>
           </Grid>
 
           <Grid item xs={4}>
-            <Typography variant="p" color="textPrimary" gutterBottom>
+            <Typography variant="inherit" color="textPrimary" gutterBottom>
               Code of conduct: {event.coc}
             </Typography>
           </Grid>
 
           <Grid item xs={4}>
-            <Typography variant="p" color="textPrimary" gutterBottom>
+            <Typography variant="inherit" color="textPrimary" gutterBottom>
               Diversity scholarships: {event.scholarships}
             </Typography>
           </Grid>
