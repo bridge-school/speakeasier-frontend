@@ -18,7 +18,9 @@ const HomePage = ({ events, isLoading, error, getEvents }) => {
           <h1>Home Page</h1>
           {isLoading && <LinearProgress/>}
           {error && <div>Unable to fetch events. Please try again</div>}
-          <p>{events.map(event => event.name)}</p>
+          <ul>
+            {events.map(event => <li key={event.id}>{event.eventName}</li>)}
+          </ul>
         </Box>
       </Container>
     </div>

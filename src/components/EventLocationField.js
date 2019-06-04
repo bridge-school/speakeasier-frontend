@@ -5,13 +5,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
 
-const EventLocationField = ({ className, label, id }) => {
-  const [address, setAddress] = useState('');
+const EventLocationField = ({ value, onChange, onSelect, className, label, id }) => {
   const [errorStatus, setErrorStatus] = useState('');
-
-  const handleAddressChange = address => {
-    setAddress(address);
-  };
 
   const handleLocationError = (errorStatus, clearSuggestions) => {
     setErrorStatus(errorStatus);
@@ -21,9 +16,9 @@ const EventLocationField = ({ className, label, id }) => {
 
   return (
     <PlacesAutocomplete
-      value={address}
-      onChange={handleAddressChange}
-      onSelect={handleAddressChange}
+      value={value}
+      onChange={onChange}
+      onSelect={onSelect}
       onError={handleLocationError}
     >
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (

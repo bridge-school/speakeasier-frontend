@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Moment from '@date-io/moment';
 import TextField from '@material-ui/core/TextField';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import EventLocationField from './EventLocationField';
 import Divider from '@material-ui/core/Divider';
 import Radio from '@material-ui/core/Radio';
@@ -11,6 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -70,30 +72,60 @@ const useStyles = makeStyles(theme => ({
     }
   },
   submitButton: {
-    marginTop: '30px'
+    marginTop: '30px',
+    minWidth: '150px',
+    textAlign: 'center'
   },
   alignLeft: {
     textAlign: 'left'
+  },
+  spinner: {
+    color: '#424242'
   }
 }));
 
-const Form = ({ name, formData, setEventName, submitEvent }) => {
+const Form = ({ history, addEvent, isLoading }) => {
   const classes = useStyles();
-  const [selectedEventDate, setEventDate] = useState(new Date());
-  const [selectedSubmissionDate, setSubmissionDate] = useState(new Date());
+  const [formData, setFormData] = useState({
+    eventName: '',
+    eventWebsite: '',
+    eventDate: new Date(),
+    location: '',
+    submissionDate: new Date(),
+    submissionWebsite: '',
+    compensation: null,
+    coc: null,
+    scholarships: null,
+    contactName: '',
+    contactEmail: ''
+  });
 
-  const onEventDateChange = date => {
-    setEventDate(date);
-  };
+  const handleChange = event => setFormData({
+    ...formData,
+    [event.target.name]: event.target.value
+  });
 
-  const onSubmissionDateChange = date => {
-    setSubmissionDate(date);
-  };
+  const handleDateChange = name => date => setFormData({
+    ...formData,
+    [name]: date
+  });
+
+  const handleSetLocation = address => setFormData({
+    ...formData,
+    location: address
+  });
 
   const onSubmit = event => {
     event.preventDefault();
 
-    submitEvent(formData)
+    addEvent({
+      ...formData,
+      eventDate: formData.eventDate.unix(),
+      submissionDate: formData.submissionDate.unix()
+    })
+    .then(() => {
+      history.push('/')
+    })
   }
 
   return (
@@ -103,43 +135,57 @@ const Form = ({ name, formData, setEventName, submitEvent }) => {
           id="standard-name"
           label="Event Name"
           placeholder="Event Name"
+          name="eventName"
+          value={formData.eventName}
           className={classes.inputField}
-          value={name}
-          onChange={event => setEventName(event.target.value)}
+          onChange={handleChange}
         />
         <TextField
           id="standard-name"
           label="Event Website"
           placeholder="Event Website"
+          name="eventWebsite"
+          onChange={handleChange}
+          value={formData.eventWebsite}
           className={classes.inputField}
         />
+
         <MuiPickersUtilsProvider utils={Moment}>
           <DatePicker
             className={classes.inputField}
             label="Event Date"
-            value={selectedEventDate}
-            onChange={onEventDateChange}/>
+            name="eventDate"
+            value={formData.eventDate}
+            onChange={handleDateChange('eventDate')} />
         </MuiPickersUtilsProvider>
 
         <EventLocationField
           id="standard-name"
           label="Event Location"
+          name="location"
+          value={formData.location}
+          onChange={handleSetLocation}
+          onSelect={handleSetLocation}
           className={classes.autocomplete}
         />
 
         <Divider className={classes.divider}/>
+
         <MuiPickersUtilsProvider utils={Moment}>
           <DatePicker
             className={classes.inputField}
             label="Submission Date"
-            value={selectedSubmissionDate}
-            onChange={onSubmissionDateChange}
+            value={formData.submissionDate}
+            onChange={handleDateChange('submissionDate')}
           />
         </MuiPickersUtilsProvider>
         <TextField
           id="standard-name"
           label="Submission Website"
           placeholder="Submission Website"
+          name="submissionWebsite"
+          value={formData.submissionWebsite}
+          onChange={handleChange}
           className={classes.inputField}
         />
 
@@ -148,6 +194,8 @@ const Form = ({ name, formData, setEventName, submitEvent }) => {
           <RadioGroup
             aria-label="Are speakers compensated at your event?"
             name="compensation"
+            checked={formData.compensation}
+            onChange={handleChange}
           >
             <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
             <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
@@ -159,6 +207,8 @@ const Form = ({ name, formData, setEventName, submitEvent }) => {
           <RadioGroup
             aria-label="Does your event have a publicly visible code of conduct?"
             name="coc"
+            checked={formData.coc}
+            onChange={handleChange}
           >
             <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
             <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
@@ -171,6 +221,8 @@ const Form = ({ name, formData, setEventName, submitEvent }) => {
           <RadioGroup
             aria-label="Does your event provide diversity scholarships?"
             name="scholarships"
+            checked={formData.scholarships}
+            onChange={handleChange}
           >
             <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
             <FormControlLabel value="no" control={<Radio color="primary"/>} label="No"/>
@@ -183,26 +235,35 @@ const Form = ({ name, formData, setEventName, submitEvent }) => {
           id="standard-name"
           label="Contact Name"
           placeholder="Contact Name"
+          name="contactName"
+          value={formData.contactName}
+          onChange={handleChange}
           className={classes.inputField}
         />
         <TextField
           id="standard-name"
           label="Contact E-mail"
           placeholder="Contact Email"
+          name="contactEmail"
+          value={formData.contactEmail}
+          onChange={handleChange}
           className={classes.inputField}
         />
         <Divider className={classes.divider}/>
       </div>
+
       <Button
         color="primary"
         variant="contained"
         className={classes.submitButton}
         type="submit"
+        disabled={isLoading}
       >
-        Submit Event
+        {isLoading && <CircularProgress className={classes.spinner} size={24} />}
+        {!isLoading && 'Submit Event'}
       </Button>
     </form>
   );
 };
 
-export default Form;
+export default withRouter(Form);

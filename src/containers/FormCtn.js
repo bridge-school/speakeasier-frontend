@@ -1,17 +1,13 @@
 import { connect } from 'react-redux';
 import Form from '../components/Form';
-import { setEventName, postEvent } from '../actions/form.actions';
+import { addEvent } from '../actions/events.actions';
 
-function mapStateToProps (state) {
-  return {
-    name: state.formState.name,
-    formData: state.formState
-  };
-}
+const mapStateToProps = state => ({
+  isLoading: state.eventsState.isLoading
+})
 
 const mapDispatchToProps = {
-  setEventName,
-  submitEvent: postEvent
+  addEvent: addEvent
 };
 
 const FormCtn = connect(
