@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Header from './Header';
+import EventList from './EventList';
 
 const HomePage = ({ events, isLoading, error, getEvents }) => {
 
@@ -18,9 +19,7 @@ const HomePage = ({ events, isLoading, error, getEvents }) => {
           <h1>Home Page</h1>
           {isLoading && <LinearProgress/>}
           {error && <div>Unable to fetch events. Please try again</div>}
-          <ul>
-            {events.map(event => <li key={event.id}>{event.eventName}</li>)}
-          </ul>
+          <EventList events={events}/>
         </Box>
       </Container>
     </div>
