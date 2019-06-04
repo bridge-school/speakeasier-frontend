@@ -13,6 +13,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
+import moment from "moment";
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -97,7 +99,8 @@ const Form = ({ history, addEvent, isLoading }) => {
     coc: null,
     scholarships: null,
     contactName: '',
-    contactEmail: ''
+    contactEmail: '',
+		createdAt: null
   });
 
   const handleChange = event => setFormData({
@@ -118,10 +121,13 @@ const Form = ({ history, addEvent, isLoading }) => {
   const onSubmit = event => {
     event.preventDefault();
 
+		const currentDate = moment();
+
     addEvent({
       ...formData,
       eventDate: formData.eventDate.unix(),
-      submissionDate: formData.submissionDate.unix()
+      submissionDate: formData.submissionDate.unix(),
+			createdAt: currentDate.unix()
     })
     .then(() => {
       history.push('/')
