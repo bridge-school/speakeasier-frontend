@@ -13,14 +13,9 @@ const EventList = ({ events, test }) => {
 
   return (
     <div className={classes.root}>
-      {events.map(event => {
-        console.log(event);
-        return (
-          <div>
-            <EventListItem event={event} />
-          </div>
-        );
-      })}
+      {events.map(event => (
+        <EventListItem event={event} />
+      ))}
     </div>
   );
 };
