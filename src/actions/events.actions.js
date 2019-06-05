@@ -56,3 +56,8 @@ export const addEvent = formData => {
       });
   };
 };
+
+export const queryForEvents = payload => ({
+  type: 'QUERY_FOR_EVENTS',
+  payload
+});
