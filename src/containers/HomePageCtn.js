@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
 import HomePage from '../components/HomePage';
-import { fetchEvents } from '../actions/events.actions';
+import { fetchEvents, queryForEvents } from '../actions/events.actions';
 
 function mapStateToProps (state) {
   return {
     isLoading: state.eventsState.isLoading,
     events: state.eventsState.events,
-    error: state.eventsState.error
+    error: state.eventsState.error,
+		searchQuery: state.eventsState.searchQuery
   };
 }
 
 const mapDispatchToProps = {
-  getEvents: fetchEvents
+  getEvents: fetchEvents,
+	queryForEvents
 };
 
 const HomePageCtn = connect(

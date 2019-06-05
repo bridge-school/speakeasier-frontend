@@ -1,5 +1,6 @@
 const initialState = {
   events: [],
+	searchQuery: '',
   isLoading: false,
   error: false
 };
@@ -32,6 +33,11 @@ const eventsReducer = (state = initialState, action) => {
         ...initialState,
         events: [action.payload, ...state.events]
       };
+		case 'QUERY_FOR_EVENTS':
+			return {
+				...state,
+				searchQuery: action.payload
+			}
     default:
       return initialState;
   }

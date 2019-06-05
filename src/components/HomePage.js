@@ -4,8 +4,9 @@ import Box from "@material-ui/core/Box";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Header from "./Header";
 import EventList from "./EventList";
+import SearchBar from './SearchBar';
 
-const HomePage = ({ events, isLoading, error, getEvents }) => {
+const HomePage = ({ events, isLoading, error, getEvents, queryForEvents, searchQuery }) => {
   useEffect(() => {
     getEvents();
   }, [getEvents]);
@@ -15,10 +16,10 @@ const HomePage = ({ events, isLoading, error, getEvents }) => {
       <Header buttonText="Submit Conference" path="/submit-conference" />
       <Container maxWidth="md">
         <Box flexGrow={1} textAlign="center">
-          <h1>Home Page</h1>
           {isLoading && <LinearProgress />}
           {error && <div>Unable to fetch events. Please try again</div>}
-          <EventList events={events} />
+					<SearchBar queryForEvents={queryForEvents} />
+          <EventList events={events} searchQuery={searchQuery} />
         </Box>
       </Container>
     </div>
