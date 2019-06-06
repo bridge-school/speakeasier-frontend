@@ -103,10 +103,38 @@ const Form = ({ history, addEvent, isLoading }) => {
     createdAt: null
   });
 
-  const handleChange = event => setFormData({
-    ...formData,
-    [event.target.name]: event.target.value
-  });
+	const [formFieldIsValid, setFormFieldIsValid] = useState({
+		eventNameError: false,
+		contactEmailError: false
+	})
+
+
+  const handleChange = event => {
+		const fieldName = `${event.target.name}Error`;
+		let hasError = false;
+
+		if(event.target.name === 'eventWebsite' || event.target.name === 'submissionWebsite') {
+			hasError = handleWebsiteValidation(event.target.value);
+		}
+
+		if(event.target.name === 'contactEmail') {
+			hasError = handleEmailValidation(event.target.value);
+		}
+
+		setFormFieldIsValid({ [fieldName]: hasError});
+
+		setFormData({
+			...formData,
+			[event.target.name]: event.target.value
+		})
+	};
+
+
+	const handleInputValidation = name => !name ? true : false;
+
+	const handleEmailValidation = email => !/\S+@\S+\.\S+/.test(email) ? true : false;
+
+	const handleWebsiteValidation = website => false;
 
   const handleDateChange = name => date => setFormData({
     ...formData,
@@ -145,6 +173,7 @@ const Form = ({ history, addEvent, isLoading }) => {
           value={formData.eventName}
           className={classes.inputField}
           onChange={handleChange}
+					helperText={formFieldIsValid.eventNameErroMsg}
         />
         <TextField
           id="standard-name"
@@ -254,6 +283,7 @@ const Form = ({ history, addEvent, isLoading }) => {
           value={formData.contactEmail}
           onChange={handleChange}
           className={classes.inputField}
+					error={formFieldIsValid.contactEmailError}
         />
         <Divider className={classes.divider}/>
       </div>
