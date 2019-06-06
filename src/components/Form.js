@@ -109,29 +109,41 @@ const Form = ({ history, addEvent, isLoading }) => {
 		submissionDateError: false,
 		submissionWebsiteError: false,
 		contactEmailError: false
-	})
+	});
 
 
   const handleChange = event => {
-		const fieldName = `${event.target.name}Error`;
-		let hasError = false;
+		const formDataName = event.target.name;
+		const formDataValue = event.target.value;
 
-		if(event.target.name === 'eventWebsite' || event.target.name === 'submissionWebsite') {
-			hasError = handleWebsiteValidation(event.target.value);
-		}
-
-		if(event.target.name === 'contactEmail') {
-			hasError = handleEmailValidation(event.target.value);
-		}
-
-		setFormFieldIsValid({ [fieldName]: hasError});
+		if(
+			formDataName === 'eventWebsite' ||
+			formDataName === 'submissionWebsite' ||
+			formDataName === 'contactEmail'
+		) {
+				validationCheck(formDataName, formDataValue);
+			}
 
 		setFormData({
 			...formData,
-			[event.target.name]: event.target.value
+			[formDataName]: formDataValue
 		})
 	};
 
+	const validationCheck = (formDataName, formDataValue) => {
+		const errorFieldName = `${formDataName}Error`;
+		let hasError = false;
+
+		if(formDataName === 'eventWebsite' || formDataName === 'submissionWebsite') {
+			hasError = handleWebsiteValidation(formDataValue);
+		}
+
+		if(formDataName === 'contactEmail') {
+			hasError = handleEmailValidation(formDataValue);
+		}
+
+		setFormFieldIsValid({ [errorFieldName]: hasError});
+	}
 
 	const handleEmailValidation = email => !/\S+@\S+\.\S+/.test(email) ? true : false;
 
@@ -174,7 +186,6 @@ const Form = ({ history, addEvent, isLoading }) => {
           value={formData.eventName}
           className={classes.inputField}
           onChange={handleChange}
-					helperText={formFieldIsValid.eventNameErroMsg}
         />
         <TextField
           id="standard-name"
