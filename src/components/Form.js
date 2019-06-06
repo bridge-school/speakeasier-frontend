@@ -263,7 +263,7 @@ const Form = ({ history, addEvent, isLoading }) => {
         variant="contained"
         className={classes.submitButton}
         type="submit"
-        disabled={isLoading}
+        disabled={isLoading || (Object.values(formData).includes(null) && Object.values(formData).includes(''))}
       >
         {isLoading && <CircularProgress className={classes.spinner} size={24}/>}
         {!isLoading && 'Submit Event'}
