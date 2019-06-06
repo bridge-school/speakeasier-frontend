@@ -104,7 +104,10 @@ const Form = ({ history, addEvent, isLoading }) => {
   });
 
 	const [formFieldIsValid, setFormFieldIsValid] = useState({
-		eventNameError: false,
+		eventWebsiteError: false,
+		eventDateError: false,
+		submissionDateError: false,
+		submissionWebsiteError: false,
 		contactEmailError: false
 	})
 
@@ -130,11 +133,9 @@ const Form = ({ history, addEvent, isLoading }) => {
 	};
 
 
-	const handleInputValidation = name => !name ? true : false;
-
 	const handleEmailValidation = email => !/\S+@\S+\.\S+/.test(email) ? true : false;
 
-	const handleWebsiteValidation = website => false;
+	const handleWebsiteValidation = website => !/([\w]+\.){1}([\w]+\.?)+/.test(website) ? true : false;
 
   const handleDateChange = name => date => setFormData({
     ...formData,
@@ -183,6 +184,7 @@ const Form = ({ history, addEvent, isLoading }) => {
           onChange={handleChange}
           value={formData.eventWebsite}
           className={classes.inputField}
+					error={formFieldIsValid.eventWebsiteError}
         />
 
         <MuiPickersUtilsProvider utils={Moment}>
@@ -222,6 +224,7 @@ const Form = ({ history, addEvent, isLoading }) => {
           value={formData.submissionWebsite}
           onChange={handleChange}
           className={classes.inputField}
+					error={formFieldIsValid.submissionWebsiteError}
         />
 
         <FormControl component="fieldset" className={classes.radioField}>
