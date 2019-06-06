@@ -13,7 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
-import moment from "moment";
+import moment from 'moment';
 
 
 const useStyles = makeStyles(theme => ({
@@ -100,7 +100,7 @@ const Form = ({ history, addEvent, isLoading }) => {
     scholarships: null,
     contactName: '',
     contactEmail: '',
-		createdAt: null
+    createdAt: null
   });
 
   const handleChange = event => setFormData({
@@ -121,18 +121,18 @@ const Form = ({ history, addEvent, isLoading }) => {
   const onSubmit = event => {
     event.preventDefault();
 
-		const currentDate = moment();
+    const currentDate = moment();
 
     addEvent({
       ...formData,
       eventDate: formData.eventDate.unix(),
       submissionDate: formData.submissionDate.unix(),
-			createdAt: currentDate.unix()
+      createdAt: currentDate.unix()
     })
-    .then(() => {
-      history.push('/')
-    })
-  }
+      .then(() => {
+        history.push('/');
+      });
+  };
 
   return (
     <form className={classes.alignLeft} onSubmit={onSubmit}>
@@ -162,7 +162,7 @@ const Form = ({ history, addEvent, isLoading }) => {
             label="Event Date"
             name="eventDate"
             value={formData.eventDate}
-            onChange={handleDateChange('eventDate')} />
+            onChange={handleDateChange('eventDate')}/>
         </MuiPickersUtilsProvider>
 
         <EventLocationField
@@ -265,7 +265,7 @@ const Form = ({ history, addEvent, isLoading }) => {
         type="submit"
         disabled={isLoading}
       >
-        {isLoading && <CircularProgress className={classes.spinner} size={24} />}
+        {isLoading && <CircularProgress className={classes.spinner} size={24}/>}
         {!isLoading && 'Submit Event'}
       </Button>
     </form>
