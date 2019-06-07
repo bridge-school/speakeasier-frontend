@@ -91,9 +91,9 @@ const Form = ({ history, addEvent, isLoading }) => {
   const [formData, setFormData] = useState({
     eventName: '',
     eventWebsite: '',
-    eventDate: new Date(),
+    eventDate: moment(),
     location: '',
-    submissionDate: new Date(),
+    submissionDate: moment(),
     submissionWebsite: '',
     compensation: '',
     coc: '',
