@@ -103,10 +103,51 @@ const Form = ({ history, addEvent, isLoading }) => {
     createdAt: null
   });
 
-  const handleChange = event => setFormData({
-    ...formData,
-    [event.target.name]: event.target.value
-  });
+	const [formFieldIsValid, setFormFieldIsValid] = useState({
+		eventWebsiteError: false,
+		eventDateError: false,
+		submissionDateError: false,
+		submissionWebsiteError: false,
+		contactEmailError: false
+	});
+
+
+  const handleChange = event => {
+		const formDataName = event.target.name;
+		const formDataValue = event.target.value;
+
+		if(
+			formDataName === 'eventWebsite' ||
+			formDataName === 'submissionWebsite' ||
+			formDataName === 'contactEmail'
+		) {
+				validationCheck(formDataName, formDataValue);
+			}
+
+		setFormData({
+			...formData,
+			[formDataName]: formDataValue
+		})
+	};
+
+	const validationCheck = (formDataName, formDataValue) => {
+		const errorFieldName = `${formDataName}Error`;
+		let hasError = false;
+
+		if(formDataName === 'eventWebsite' || formDataName === 'submissionWebsite') {
+			hasError = handleWebsiteValidation(formDataValue);
+		}
+
+		if(formDataName === 'contactEmail') {
+			hasError = handleEmailValidation(formDataValue);
+		}
+
+		setFormFieldIsValid({ [errorFieldName]: hasError});
+	}
+
+	const handleEmailValidation = email => !/\S+@\S+\.\S+/.test(email) ? true : false;
+
+	const handleWebsiteValidation = website => !/([\w]+\.){1}([\w]+\.?)+/.test(website) ? true : false;
 
   const handleDateChange = name => date => setFormData({
     ...formData,
@@ -154,6 +195,7 @@ const Form = ({ history, addEvent, isLoading }) => {
           onChange={handleChange}
           value={formData.eventWebsite}
           className={classes.inputField}
+					error={formFieldIsValid.eventWebsiteError}
         />
 
         <MuiPickersUtilsProvider utils={Moment}>
@@ -196,6 +238,7 @@ const Form = ({ history, addEvent, isLoading }) => {
           value={formData.submissionWebsite}
           onChange={handleChange}
           className={classes.inputField}
+					error={formFieldIsValid.submissionWebsiteError}
         />
 
         <FormControl component="fieldset" className={classes.radioField}>
@@ -257,6 +300,7 @@ const Form = ({ history, addEvent, isLoading }) => {
           value={formData.contactEmail}
           onChange={handleChange}
           className={classes.inputField}
+					error={formFieldIsValid.contactEmailError}
         />
         <Divider className={classes.divider}/>
       </div>
