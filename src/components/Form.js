@@ -95,9 +95,9 @@ const Form = ({ history, addEvent, isLoading }) => {
     location: '',
     submissionDate: moment(),
     submissionWebsite: '',
-    compensation: null,
-    coc: null,
-    scholarships: null,
+    compensation: '',
+    coc: '',
+    scholarships: '',
     contactName: '',
     contactEmail: '',
     createdAt: null
@@ -246,7 +246,7 @@ const Form = ({ history, addEvent, isLoading }) => {
           <RadioGroup
             aria-label="Are speakers compensated at your event?"
             name="compensation"
-            checked={formData.compensation}
+            value={formData.compensation}
             onChange={handleChange}
           >
             <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
@@ -259,7 +259,7 @@ const Form = ({ history, addEvent, isLoading }) => {
           <RadioGroup
             aria-label="Does your event have a publicly visible code of conduct?"
             name="coc"
-            checked={formData.coc}
+            value={formData.coc}
             onChange={handleChange}
           >
             <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
@@ -273,7 +273,7 @@ const Form = ({ history, addEvent, isLoading }) => {
           <RadioGroup
             aria-label="Does your event provide diversity scholarships?"
             name="scholarships"
-            checked={formData.scholarships}
+            value={formData.scholarships}
             onChange={handleChange}
           >
             <FormControlLabel value="yes" control={<Radio color="primary"/>} label="Yes"/>
