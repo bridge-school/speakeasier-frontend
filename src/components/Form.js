@@ -200,6 +200,7 @@ const Form = ({ history, addEvent, isLoading }) => {
 
         <MuiPickersUtilsProvider utils={Moment}>
           <DatePicker
+            disablePast
             className={classes.inputField}
             label="Event Date"
             name="eventDate"
@@ -221,6 +222,8 @@ const Form = ({ history, addEvent, isLoading }) => {
 
         <MuiPickersUtilsProvider utils={Moment}>
           <DatePicker
+            disablePast
+            maxDate={formData.eventDate}
             className={classes.inputField}
             label="Submission Date"
             value={formData.submissionDate}
