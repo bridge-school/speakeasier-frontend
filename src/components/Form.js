@@ -15,6 +15,7 @@ import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 
+import FormSectionSubmission from './FormSectionSubmission';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -220,26 +221,16 @@ const Form = ({ history, addEvent, isLoading }) => {
 
         <Divider className={classes.divider}/>
 
-        <MuiPickersUtilsProvider utils={Moment}>
-          <DatePicker
-            disablePast
-            maxDate={formData.eventDate}
-            className={classes.inputField}
-            label="Submission Date"
-            value={formData.submissionDate}
-            onChange={handleDateChange('submissionDate')}
-          />
-        </MuiPickersUtilsProvider>
-        <TextField
-          id="standard-name"
-          label="Submission Website"
-          placeholder="Submission Website"
-          name="submissionWebsite"
-          value={formData.submissionWebsite}
-          onChange={handleChange}
-          className={classes.inputField}
-					error={formFieldIsValid.submissionWebsiteError}
-        />
+
+				<FormSectionSubmission
+					maxDate={formData.maxDate}
+					dateValue={formData.submissionDate}
+					dateOnChange={handleDateChange('submissionDate')}
+					websiteValue={formData.submissionWebsite}
+					websiteOnChange={handleChange}
+					websiteError={formFieldIsValid.submissionWebsiteError}
+					classInput={classes.inputField}
+				/>
 
         <FormControl component="fieldset" className={classes.radioField}>
           <FormLabel component="legend">Are speakers compensated at your event?</FormLabel>
