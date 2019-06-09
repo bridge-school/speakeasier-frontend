@@ -14,6 +14,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
+import ContactSection from './ContactSection';
 
 
 const useStyles = makeStyles(theme => ({
@@ -283,26 +284,15 @@ const Form = ({ history, addEvent, isLoading }) => {
 
         <Divider className={classes.divider}/>
 
-        <TextField
-          id="standard-name"
-          label="Contact Name"
-          placeholder="Contact Name"
-          name="contactName"
-          value={formData.contactName}
-          onChange={handleChange}
-          className={classes.inputField}
+        <ContactSection
+          values={formData}
+          classInput={classes.inputField}
+          inputOnChange={handleChange}
+          inputError={formFieldIsValid.contactEmailError}
         />
-        <TextField
-          id="standard-name"
-          label="Contact E-mail"
-          placeholder="Contact Email"
-          name="contactEmail"
-          value={formData.contactEmail}
-          onChange={handleChange}
-          className={classes.inputField}
-					error={formFieldIsValid.contactEmailError}
-        />
+
         <Divider className={classes.divider}/>
+        
       </div>
 
       <Button
