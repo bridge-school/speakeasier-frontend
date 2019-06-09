@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
   strike: {
     textDecoration: 'line-through',
-    color: '#8C8C95'
+    color: '#8C8C95 !important'
   },
   icon : {
     marginRight: '10px',
