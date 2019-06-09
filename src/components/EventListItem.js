@@ -1,29 +1,49 @@
-import React from "react";
-import moment from "moment";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import moment from 'moment';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { makeStyles } from '@material-ui/core/styles';
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+import { faGraduationCap, faCheckSquare, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import cx from 'classnames';
 
 const useStyles = makeStyles(theme => ({
   card: {
     margin: 10,
-    textAlign: "left",
-    color: theme.palette.text.secondary
+    textAlign: 'left',
+    color: theme.palette.text.secondary,
+    marginBottom: '20px'
+  },
+  content: {
+    padding: '30px !important'
   },
   title: {
-    color: "#3f51b5",
-    fontSize: "1.2rem"
+    color: '#3f51b5',
+    fontSize: '1.2rem',
+    fontWeight: 'bold',
+    marginBottom: '15px;'
   },
   submissionDate: {
-    textAlign: "right"
+    textAlign: 'right'
   },
   eventDate: {
-    paddingRight: "5px"
+    paddingRight: '5px'
   },
   extras: {
-    padding: "20px 0 0"
+    padding: '20px 0 0'
+  },
+  strike: {
+    textDecoration: 'line-through',
+    color: '#8C8C95 !important'
+  },
+  icon : {
+    marginRight: '10px',
+    color: '#4A4A53'
+  },
+  extraText: {
+    color: '#4A4A53'
   }
 }));
 
@@ -32,7 +52,7 @@ const EventListItem = ({ event }) => {
 
   return (
     <Card className={classes.card} key={event.id}>
-      <CardContent>
+      <CardContent className={classes.content}>
         <Grid container>
           <Grid item xs={6}>
             <Typography
@@ -70,19 +90,22 @@ const EventListItem = ({ event }) => {
         <Grid container className={classes.extras}>
           <Grid item xs={4}>
             <Typography variant="inherit" color="textPrimary" gutterBottom>
-              Compensation: {event.compensation}
+              <Icon icon={faDollarSign} className={classes.icon} />
+              <span className={cx(classes.extraText, { [classes.strike]: event.compensation === 'no' })}>Compensation</span>
             </Typography>
           </Grid>
 
           <Grid item xs={4}>
             <Typography variant="inherit" color="textPrimary" gutterBottom>
-              Code of conduct: {event.coc}
+              <Icon icon={faCheckSquare} className={classes.icon} />
+              <span className={cx(classes.extraText, { [classes.strike]: event.coc === 'no' })}>Code of conduct</span>
             </Typography>
           </Grid>
 
           <Grid item xs={4}>
             <Typography variant="inherit" color="textPrimary" gutterBottom>
-              Diversity scholarships: {event.scholarships}
+              <Icon icon={faGraduationCap} className={classes.icon} />
+              <span className={cx(classes.extraText, { [classes.strike]: event.scholarships === 'no'})}>Diversity Scholarships</span>
             </Typography>
           </Grid>
         </Grid>
