@@ -11,8 +11,8 @@ const EventSection = ({
   inputError,
   locationHandle,
   handleDateChange
-}) => {
-  return (
+}) =>
+  (
     <>
       <TextField
         id="standard-name"
@@ -56,6 +56,5 @@ const EventSection = ({
       />
     </>
   );
-};
 
 export default EventSection;
