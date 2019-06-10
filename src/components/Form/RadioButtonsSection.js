@@ -6,11 +6,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 
 const RadioButtonsSection = ({
-   compensation,
-   coc,
-   scholarships,
-   classRadioField,
-   handleChange
+    compensation,
+    coc,
+    scholarships,
+    classRadioField,
+    handleChange
   }) =>
   (
     <>
