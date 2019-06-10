@@ -2,17 +2,13 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Divider from "@material-ui/core/Divider";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
 import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
 import moment from "moment";
 import ContactSection from "./ContactSection";
 import EventSection from "./FormEventSection";
 import FormSectionSubmission from "./FormSectionSubmission";
+import RadioButtonsSection from "./RadioButtonsSection";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -202,75 +198,13 @@ const Form = ({ history, addEvent, isLoading }) => {
           classInput={classes.inputField}
         />
 
-        <FormControl component="fieldset" className={classes.radioField}>
-          <FormLabel component="legend">
-            Are speakers compensated at your event?
-          </FormLabel>
-          <RadioGroup
-            aria-label="Are speakers compensated at your event?"
-            name="compensation"
-            value={formData.compensation}
-            onChange={handleChange}
-          >
-            <FormControlLabel
-              value="yes"
-              control={<Radio color="primary" />}
-              label="Yes"
-            />
-            <FormControlLabel
-              value="no"
-              control={<Radio color="primary" />}
-              label="No"
-            />
-          </RadioGroup>
-        </FormControl>
-
-        <FormControl component="fieldset" className={classes.radioField}>
-          <FormLabel component="legend">
-            Does your event have a publicly visible code of conduct?
-          </FormLabel>
-          <RadioGroup
-            aria-label="Does your event have a publicly visible code of conduct?"
-            name="coc"
-            value={formData.coc}
-            onChange={handleChange}
-          >
-            <FormControlLabel
-              value="yes"
-              control={<Radio color="primary" />}
-              label="Yes"
-            />
-            <FormControlLabel
-              value="no"
-              control={<Radio color="primary" />}
-              label="No"
-            />
-          </RadioGroup>
-        </FormControl>
-
-        <FormControl component="fieldset" className={classes.radioField}>
-          <FormLabel component="legend">
-            Does your event provide diversity scholarships?
-          </FormLabel>
-
-          <RadioGroup
-            aria-label="Does your event provide diversity scholarships?"
-            name="scholarships"
-            value={formData.scholarships}
-            onChange={handleChange}
-          >
-            <FormControlLabel
-              value="yes"
-              control={<Radio color="primary" />}
-              label="Yes"
-            />
-            <FormControlLabel
-              value="no"
-              control={<Radio color="primary" />}
-              label="No"
-            />
-          </RadioGroup>
-        </FormControl>
+        <RadioButtonsSection
+          compensation={formData.compensation}
+          coc={formData.coc}
+          scholarships={formData.scholarships}
+          classRadioField={classes.radioField}
+          handleChange={handleChange}
+        />
 
         <Divider className={classes.divider} />
 
