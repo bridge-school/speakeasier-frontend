@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import FormPage from './FormPage';
+import FormPage from './Form/FormPage';
 import HomePageCtn from '../containers/HomePageCtn';
 
 const App = () =>
