@@ -2,11 +2,11 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import EventListItem from "./EventListItem";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     flexGrow: 1
   }
-}));
+});
 
 const EventList = ({ events, test, searchQuery }) => {
   const classes = useStyles();

@@ -7,7 +7,7 @@ import EventList from "./EventList";
 import SearchBar from './SearchBar';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   box: {
     marginBottom: '80px'
   },
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'left',
     margin: '10px'
   }
-}));
+});
 
 const EventListPage = ({ events, isLoading, error, getEvents, queryForEvents, searchQuery }) => {
   useEffect(() => {
