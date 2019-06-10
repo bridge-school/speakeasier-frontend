@@ -6,8 +6,8 @@ import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
 import moment from "moment";
 import ContactSection from "./ContactSection";
-import EventSection from "./FormEventSection";
-import FormSectionSubmission from "./FormSectionSubmission";
+import EventSection from "./EventSection";
+import SubmissionSection from "./SubmissionSection";
 import RadioButtonsSection from "./RadioButtonsSection";
 
 const useStyles = makeStyles(theme => ({
@@ -188,7 +188,7 @@ const Form = ({ history, addEvent, isLoading }) => {
 
         <Divider className={classes.divider} />
 
-        <FormSectionSubmission
+        <SubmissionSection
           maxDate={formData.maxDate}
           dateValue={formData.submissionDate}
           dateOnChange={handleDateChange("submissionDate")}

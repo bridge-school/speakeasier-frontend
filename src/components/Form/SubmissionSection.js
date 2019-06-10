@@ -3,7 +3,7 @@ import Moment from '@date-io/moment';
 import TextField from '@material-ui/core/TextField';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
-const FormSectionSubmission = ({
+const SubmissionSection = ({
 		dateValue,
 		dateOnChange,
 		maxDate,
@@ -11,9 +11,8 @@ const FormSectionSubmission = ({
 		websiteOnChange,
 		websiteError,
 		classInput
-	}) => {
-
-	return (
+}) =>
+  (
 		<>
 			<MuiPickersUtilsProvider utils={Moment}>
 				<DatePicker
@@ -36,7 +35,6 @@ const FormSectionSubmission = ({
 				error={websiteError}
 			/>
 		</>
-	)
-}
+	);
 
-export default FormSectionSubmission;
+export default SubmissionSection;

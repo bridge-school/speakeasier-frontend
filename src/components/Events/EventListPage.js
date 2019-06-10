@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const HomePage = ({ events, isLoading, error, getEvents, queryForEvents, searchQuery }) => {
+const EventListPage = ({ events, isLoading, error, getEvents, queryForEvents, searchQuery }) => {
   useEffect(() => {
     getEvents();
   }, [getEvents]);
@@ -43,4 +43,4 @@ const HomePage = ({ events, isLoading, error, getEvents, queryForEvents, searchQ
   );
 };
 
-export default HomePage;
+export default EventListPage;
