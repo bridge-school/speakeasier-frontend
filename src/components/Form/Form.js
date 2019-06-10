@@ -209,7 +209,8 @@ const Form = ({ history, addEvent, isLoading }) => {
         <Divider className={classes.divider} />
 
         <ContactSection
-          values={formData}
+          contactName={formData.contactName}
+          contactEmail={formData.contactEmail}
           classInput={classes.inputField}
           inputOnChange={handleChange}
           inputError={formFieldIsValid.contactEmailError}
