@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import HomePage from '../components/HomePage';
+import EventListPage from '../components/Events/EventListPage';
 import { fetchEvents, queryForEvents } from '../actions/events.actions';
 
 function mapStateToProps (state) {
@@ -19,6 +19,6 @@ const mapDispatchToProps = {
 const HomePageCtn = connect(
   mapStateToProps,
   mapDispatchToProps
-)(HomePage);
+)(EventListPage);
 
 export default HomePageCtn;

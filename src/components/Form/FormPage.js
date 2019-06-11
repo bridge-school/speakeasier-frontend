@@ -1,11 +1,11 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import Header from './Header';
-import FormCtn from '../containers/FormCtn';
+import Header from '../Events/Header';
+import FormCtn from '../../containers/FormCtn';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   body: {
     backgroundColor: '#FFF',
     border: '1px solid #D9DCEF',
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: '300',
     color: '#181818'
   }
-}));
+});
 
 const FormPage = () => {
   const classes = useStyles();
