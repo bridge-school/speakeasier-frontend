@@ -79,6 +79,9 @@ const useStyles = makeStyles(theme => ({
   },
   spinner: {
     color: "#424242"
+  },
+  recaptcha: {
+    marginTop: "30px"
   }
 }));
 
@@ -223,9 +226,9 @@ const Form = ({ history, addEvent, isLoading }) => {
         />
 
         <Divider className={classes.divider} />
-      </div>
 
-      <RecaptchaSection />
+        <RecaptchaSection className={classes.recaptcha} />
+      </div>
 
       <Button
         color="primary"
