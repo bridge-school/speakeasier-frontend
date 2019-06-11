@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { loadReCaptcha } from "react-recaptcha-google";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Divider from "@material-ui/core/Divider";
@@ -9,6 +10,7 @@ import ContactSection from "./ContactSection";
 import EventSection from "./EventSection";
 import SubmissionSection from "./SubmissionSection";
 import RadioButtonsSection from "./RadioButtonsSection";
+import RecaptchaSection from "./RecaptchaSection";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -81,6 +83,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Form = ({ history, addEvent, isLoading }) => {
+  useEffect(() => {
+    loadReCaptcha();
+  }, []);
+
   const classes = useStyles();
   const [formData, setFormData] = useState({
     eventName: "",
@@ -218,6 +224,8 @@ const Form = ({ history, addEvent, isLoading }) => {
 
         <Divider className={classes.divider} />
       </div>
+
+      <RecaptchaSection />
 
       <Button
         color="primary"
