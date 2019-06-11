@@ -15,18 +15,22 @@ const RecaptchaSection = () => {
     }
   }
 
+  const verifyCallback = (recaptchaToken) => {
+    // Validation goes
+    console.log(recaptchaToken, "<= your recaptcha token")
+  }
+
   let formCaptcha;
   
   return (
-      <div>
         <ReCaptcha
           ref={(el) => {formCaptcha = el}}
           size="normal"
           render="explicit"
           sitekey="6LcZKagUAAAAAP0TiXY27vKeN83TGm3tvkIMN8Ps"
           onloadCallback={onLoadRecaptcha}
+          verifyCallback={verifyCallback}
         />
-      </div>
     );
 }
 
