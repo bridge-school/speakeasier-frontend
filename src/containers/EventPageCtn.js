@@ -16,9 +16,9 @@ const mapDispatchToProps = {
 	queryForEvents
 };
 
-const HomePageCtn = connect(
+const EventPageCtn = connect(
   mapStateToProps,
   mapDispatchToProps
 )(EventListPage);
 
-export default HomePageCtn;
+export default EventPageCtn;

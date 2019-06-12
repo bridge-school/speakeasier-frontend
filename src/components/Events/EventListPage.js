@@ -35,8 +35,8 @@ const EventListPage = ({ events, isLoading, error, getEvents, queryForEvents, se
           <h1 className={classes.title}>Upcoming events</h1>
 					<SearchBar queryForEvents={queryForEvents} />
           {isLoading && <LinearProgress />}
-          {error && <div>Unable to fetch events. Please try again</div>}
-          <EventList events={events} searchQuery={searchQuery} />
+          {isLoading && error && <div>Unable to fetch events. Please try again</div>}
+          {!isLoading && <EventList events={events} searchQuery={searchQuery} />}
         </Box>
       </Container>
     </div>
