@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import FormPage from './Form/FormPage';
-import HomePageCtn from '../containers/HomePageCtn';
+import EventPageCtn from '../containers/EventPageCtn';
 
 const App = () =>
   <Router>
     <Switch>
       <Route path="/submit-conference" component={FormPage}/>
-      <Route path="/" component={HomePageCtn}/>
+      <Route path="/" component={EventPageCtn}/>
     </Switch>
   </Router>;
 
