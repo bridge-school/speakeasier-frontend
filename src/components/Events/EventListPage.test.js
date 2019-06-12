@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import EventListPage from './EventListPage';
 import EventListItem from './EventListItem';
 import { MemoryRouter } from "react-router-dom";
-import { Enzyme, mount, configure } from 'enzyme';
+import { mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
