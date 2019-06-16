@@ -8,7 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap, faCheckSquare, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 import cx from 'classnames';
-import Badge from '@material-ui/core/Badge';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -59,8 +58,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
 const EventListItem = ({ event }) => {
   const classes = useStyles();
+  const now = new Date().getTime() / 1000;
+
+  const closingSoon = event.submissionDate >= now && moment.unix(event.submissionDate).isBefore(moment().add(1, 'week'));
 
   return (
     <Card className={classes.card} key={event.id}>
@@ -77,9 +80,11 @@ const EventListItem = ({ event }) => {
             </Typography>
           </Grid>
           <Grid item xs={4} className={classes.centerBadge}>
-            <span className={classes.badge}>
-              Submissions Closing Soon
-            </span>
+            {closingSoon &&
+              <span className={classes.badge}>
+                Submissions Closing Soon
+              </span>
+            }
           </Grid>
           <Grid item xs={4} className={classes.submissionDate}>
             <Typography color="textPrimary">
