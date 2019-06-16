@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap, faCheckSquare, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 import cx from 'classnames';
+import Badge from '@material-ui/core/Badge';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -44,6 +45,17 @@ const useStyles = makeStyles(theme => ({
   },
   extraText: {
     color: '#4A4A53'
+  },
+  badge: {
+    display: 'inline-block',
+    borderRadius: '15px',
+    padding: '3px 10px',
+    backgroundColor: '#3f51b5',
+    color: '#fff',
+    fontSize: 'small',
+  },
+  centerBadge: {
+    textAlign: 'center'
   }
 }));
 
@@ -54,7 +66,7 @@ const EventListItem = ({ event }) => {
     <Card className={classes.card} key={event.id}>
       <CardContent className={classes.content}>
         <Grid container>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <Typography
               variant="h2"
               className={classes.title}
@@ -64,7 +76,12 @@ const EventListItem = ({ event }) => {
               {event.eventName}
             </Typography>
           </Grid>
-          <Grid item xs={6} className={classes.submissionDate}>
+          <Grid item xs={4} className={classes.centerBadge}>
+            <span className={classes.badge}>
+              Submissions Closing Soon
+            </span>
+          </Grid>
+          <Grid item xs={4} className={classes.submissionDate}>
             <Typography color="textPrimary">
               {moment.unix(event.submissionDate).format("ll")}
             </Typography>
