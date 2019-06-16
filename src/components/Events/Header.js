@@ -11,6 +11,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#FFF',
     borderBottom: '1px solid #D9DCEF',
     marginBottom: '30px'
+  },
+  linkStyle: {
+    textDecoration: "none",
+    color:"#000"
   }
 }));
 
@@ -23,7 +27,9 @@ const Header = ({ path, buttonText }) => {
         <Box py={4} display="flex" justifyContent="space-between">
           <Typography variant="h4" component="h1" gutterBottom>
             <Box fontFamily="Monospace">
-              Speak Easier
+              <Link to="/" className={classes.linkStyle}>
+                Speak Easier
+              </Link>
             </Box>
           </Typography>
           <Button

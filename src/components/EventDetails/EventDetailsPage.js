@@ -27,7 +27,6 @@ const EventDetailsPage = ({ match }) => {
     return (
         <div>
             <Header buttonText="Submit Conference" path="/submit-conference" />
-
             <Container maxWidth="md">
                 <Box flexGrow={1} textAlign="center" className={classes.box}>
                     <h1 className={classes.title}>Conference: {eventId}</h1>
