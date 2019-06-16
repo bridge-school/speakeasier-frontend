@@ -44,17 +44,32 @@ const useStyles = makeStyles(theme => ({
   },
   extraText: {
     color: '#4A4A53'
+  },
+  badge: {
+    display: 'inline-block',
+    borderRadius: '15px',
+    padding: '3px 10px',
+    backgroundColor: '#3f51b5',
+    color: '#fff',
+    fontSize: 'small',
+  },
+  centerBadge: {
+    textAlign: 'center'
   }
 }));
 
+
 const EventListItem = ({ event }) => {
   const classes = useStyles();
+  const now = new Date().getTime() / 1000;
+
+  const closingSoon = event.submissionDate >= now && moment.unix(event.submissionDate).isBefore(moment().add(1, 'week'));
 
   return (
     <Card className={classes.card} key={event.id}>
       <CardContent className={classes.content}>
         <Grid container>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <Typography
               variant="h2"
               className={classes.title}
@@ -64,7 +79,14 @@ const EventListItem = ({ event }) => {
               {event.eventName}
             </Typography>
           </Grid>
-          <Grid item xs={6} className={classes.submissionDate}>
+          <Grid item xs={4} className={classes.centerBadge}>
+            {closingSoon &&
+              <span className={classes.badge}>
+                Submissions Closing Soon
+              </span>
+            }
+          </Grid>
+          <Grid item xs={4} className={classes.submissionDate}>
             <Typography color="textPrimary">
               {moment.unix(event.submissionDate).format("ll")}
             </Typography>
