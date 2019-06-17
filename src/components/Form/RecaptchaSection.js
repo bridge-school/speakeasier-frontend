@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { ReCaptcha } from "react-recaptcha-google";
 
 const RecaptchaSection = ({ handleRecaptcha }) => {
+
   useEffect(() => {
     if (formCaptcha) {
       formCaptcha.reset();
