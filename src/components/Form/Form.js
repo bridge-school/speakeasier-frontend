@@ -103,7 +103,7 @@ const Form = ({ history, addEvent, isLoading }) => {
     scholarships: "",
     contactName: "",
     contactEmail: "",
-    createdAt: null
+    createdAt: ""
   });
 
   const [formFieldIsValid, setFormFieldIsValid] = useState({
@@ -252,12 +252,7 @@ const Form = ({ history, addEvent, isLoading }) => {
         className={classes.submitButton}
         type="submit"
         disabled={
-          isLoading
-          ||
-          (Object.values(formData).includes(null) &&
-            Object.values(formData).includes(""))
-          ||
-            formFieldIsValid.recaptchaError === true
+          isLoading || Object.values(formData).includes(null) || formFieldIsValid.recaptchaError === true
         }
       >
         {isLoading && (
