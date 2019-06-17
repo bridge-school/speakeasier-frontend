@@ -111,7 +111,8 @@ const Form = ({ history, addEvent, isLoading }) => {
     eventDateError: false,
     submissionDateError: false,
     submissionWebsiteError: false,
-    contactEmailError: false
+    contactEmailError: false,
+    recaptchaError: true
   });
 
   const handleChange = event => {
@@ -147,7 +148,9 @@ const Form = ({ history, addEvent, isLoading }) => {
       hasError = handleEmailValidation(formDataValue);
     }
 
-    setFormFieldIsValid({ [errorFieldName]: hasError });
+    setFormFieldIsValid({ 
+      ...formFieldIsValid,
+      [errorFieldName]: hasError });
   };
 
   const handleEmailValidation = email =>
@@ -162,25 +165,35 @@ const Form = ({ history, addEvent, isLoading }) => {
       [name]: date
     });
 
-  const handleSetLocation = address =>
+  const handleSetLocation = address => 
     setFormData({
       ...formData,
       location: address
     });
 
-  const onSubmit = event => {
+  const handleRecaptcha = token =>  
+    setFormFieldIsValid({
+      ...formFieldIsValid,
+      recaptchaError: false
+    })
+
+  const onSubmit = event  => {
     event.preventDefault();
 
     const currentDate = moment();
 
-    addEvent({
-      ...formData,
-      eventDate: formData.eventDate.unix(),
-      submissionDate: formData.submissionDate.unix(),
-      createdAt: currentDate.unix()
-    }).then(() => {
-      history.push("/");
-    });
+    if (formFieldIsValid.recaptchaError) {
+      console.log("Sorry, invalid recaptcha");
+    } else {
+      addEvent({
+        ...formData,
+        eventDate: formData.eventDate.unix(),
+        submissionDate: formData.submissionDate.unix(),
+        createdAt: currentDate.unix()
+      }).then(() => {
+        history.push("/");
+      });
+    }
   };
 
   return (
@@ -227,7 +240,10 @@ const Form = ({ history, addEvent, isLoading }) => {
 
         <Divider className={classes.divider} />
 
-        <RecaptchaSection className={classes.recaptcha} />
+        <RecaptchaSection
+          className={classes.recaptcha}
+          handleRecaptcha={handleRecaptcha}
+        />
       </div>
 
       <Button
