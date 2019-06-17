@@ -148,7 +148,7 @@ const Form = ({ history, addEvent, isLoading }) => {
       hasError = handleEmailValidation(formDataValue);
     }
 
-    setFormFieldIsValid({ 
+    setFormFieldIsValid({
       ...formFieldIsValid,
       [errorFieldName]: hasError });
   };
@@ -165,13 +165,13 @@ const Form = ({ history, addEvent, isLoading }) => {
       [name]: date
     });
 
-  const handleSetLocation = address => 
+  const handleSetLocation = address =>
     setFormData({
       ...formData,
       location: address
     });
 
-  const handleRecaptcha = token =>  
+  const handleRecaptcha = token =>
     setFormFieldIsValid({
       ...formFieldIsValid,
       recaptchaError: false
@@ -252,9 +252,12 @@ const Form = ({ history, addEvent, isLoading }) => {
         className={classes.submitButton}
         type="submit"
         disabled={
-          isLoading ||
+          isLoading
+          ||
           (Object.values(formData).includes(null) &&
             Object.values(formData).includes(""))
+          ||
+            formFieldIsValid.recaptchaError === true
         }
       >
         {isLoading && (
