@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { loadReCaptcha } from "react-recaptcha-google";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Divider from "@material-ui/core/Divider";
@@ -9,6 +10,7 @@ import ContactSection from "./ContactSection";
 import EventSection from "./EventSection";
 import SubmissionSection from "./SubmissionSection";
 import RadioButtonsSection from "./RadioButtonsSection";
+import RecaptchaSection from "./RecaptchaSection";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -77,10 +79,17 @@ const useStyles = makeStyles(theme => ({
   },
   spinner: {
     color: "#424242"
+  },
+  recaptcha: {
+    marginTop: "30px"
   }
 }));
 
 const Form = ({ history, addEvent, isLoading }) => {
+  useEffect(() => {
+    loadReCaptcha();
+  }, []);
+
   const classes = useStyles();
   const [formData, setFormData] = useState({
     eventName: "",
@@ -94,7 +103,7 @@ const Form = ({ history, addEvent, isLoading }) => {
     scholarships: "",
     contactName: "",
     contactEmail: "",
-    createdAt: null
+    createdAt: ""
   });
 
   const [formFieldIsValid, setFormFieldIsValid] = useState({
@@ -102,7 +111,8 @@ const Form = ({ history, addEvent, isLoading }) => {
     eventDateError: false,
     submissionDateError: false,
     submissionWebsiteError: false,
-    contactEmailError: false
+    contactEmailError: false,
+    recaptchaError: true
   });
 
   const handleChange = event => {
@@ -138,7 +148,9 @@ const Form = ({ history, addEvent, isLoading }) => {
       hasError = handleEmailValidation(formDataValue);
     }
 
-    setFormFieldIsValid({ [errorFieldName]: hasError });
+    setFormFieldIsValid({
+      ...formFieldIsValid,
+      [errorFieldName]: hasError });
   };
 
   const handleEmailValidation = email =>
@@ -159,19 +171,29 @@ const Form = ({ history, addEvent, isLoading }) => {
       location: address
     });
 
-  const onSubmit = event => {
+  const handleRecaptcha = token =>
+    setFormFieldIsValid({
+      ...formFieldIsValid,
+      recaptchaError: false
+    })
+
+  const onSubmit = event  => {
     event.preventDefault();
 
     const currentDate = moment();
 
-    addEvent({
-      ...formData,
-      eventDate: formData.eventDate.unix(),
-      submissionDate: formData.submissionDate.unix(),
-      createdAt: currentDate.unix()
-    }).then(() => {
-      history.push("/");
-    });
+    if (formFieldIsValid.recaptchaError) {
+      console.log("Sorry, invalid recaptcha");
+    } else {
+      addEvent({
+        ...formData,
+        eventDate: formData.eventDate.unix(),
+        submissionDate: formData.submissionDate.unix(),
+        createdAt: currentDate.unix()
+      }).then(() => {
+        history.push("/");
+      });
+    }
   };
 
   return (
@@ -217,6 +239,11 @@ const Form = ({ history, addEvent, isLoading }) => {
         />
 
         <Divider className={classes.divider} />
+
+        <RecaptchaSection
+          className={classes.recaptcha}
+          handleRecaptcha={handleRecaptcha}
+        />
       </div>
 
       <Button
@@ -225,9 +252,7 @@ const Form = ({ history, addEvent, isLoading }) => {
         className={classes.submitButton}
         type="submit"
         disabled={
-          isLoading ||
-          (Object.values(formData).includes(null) &&
-            Object.values(formData).includes(""))
+          isLoading || Object.values(formData).includes("") || formFieldIsValid.recaptchaError === true
         }
       >
         {isLoading && (
