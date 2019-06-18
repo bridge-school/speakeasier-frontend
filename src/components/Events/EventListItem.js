@@ -26,7 +26,10 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '15px;'
   },
   submissionDate: {
-    textAlign: 'right'
+    textAlign: 'right',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'left'
+    },
   },
   eventDate: {
     paddingRight: '5px'
@@ -54,7 +57,11 @@ const useStyles = makeStyles(theme => ({
     fontSize: 'small',
   },
   centerBadge: {
-    textAlign: 'center'
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'left',
+      marginBottom: '10px'
+    },
   }
 }));
 
@@ -69,7 +76,7 @@ const EventListItem = ({ event }) => {
     <Card className={classes.card} key={event.id}>
       <CardContent className={classes.content}>
         <Grid container>
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}>
             <Typography
               variant="h2"
               className={classes.title}
@@ -79,14 +86,14 @@ const EventListItem = ({ event }) => {
               {event.eventName}
             </Typography>
           </Grid>
-          <Grid item xs={4} className={classes.centerBadge}>
+          <Grid item xs={12} sm={4} className={classes.centerBadge}>
             {closingSoon &&
               <span className={classes.badge}>
                 Submissions Closing Soon
               </span>
             }
           </Grid>
-          <Grid item xs={4} className={classes.submissionDate}>
+          <Grid item xs={12} sm={4} className={classes.submissionDate}>
             <Typography color="textPrimary">
               {moment.unix(event.submissionDate).format("ll")}
             </Typography>
@@ -110,21 +117,21 @@ const EventListItem = ({ event }) => {
         </Grid>
 
         <Grid container className={classes.extras}>
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}>
             <Typography variant="inherit" color="textPrimary" gutterBottom>
               <Icon icon={faDollarSign} className={classes.icon} />
               <span className={cx(classes.extraText, { [classes.strike]: event.compensation === 'no' })}>Compensation</span>
             </Typography>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}>
             <Typography variant="inherit" color="textPrimary" gutterBottom>
               <Icon icon={faCheckSquare} className={classes.icon} />
               <span className={cx(classes.extraText, { [classes.strike]: event.coc === 'no' })}>Code of conduct</span>
             </Typography>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}>
             <Typography variant="inherit" color="textPrimary" gutterBottom>
               <Icon icon={faGraduationCap} className={classes.icon} />
               <span className={cx(classes.extraText, { [classes.strike]: event.scholarships === 'no'})}>Diversity Scholarships</span>
