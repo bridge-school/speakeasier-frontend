@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Header from './Header';
+import Header from '../Header';
 import EventList from "./EventList";
 import SearchBar from './SearchBar';
 import { makeStyles } from '@material-ui/core/styles';
