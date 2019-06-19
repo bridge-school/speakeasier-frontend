@@ -227,16 +227,13 @@ const Form = ({ history, addEvent, isLoading }) => {
         />
 
         <Divider className={classes.divider} />
-          
-        <DescriptionSection 
-          values={formData.description}
-          classInput={classes.fullWidth} 
-          inputOnChange={handleChange}
-          inputError={formFieldIsValid}
-          locationHandle={handleSetLocation}
-          handleDateChange={handleDateChange}
-        />
 
+        <DescriptionSection 
+            values={formData.description}
+            classInput={classes.fullWidth} 
+            inputOnChange={handleChange}
+          />   
+       
         <Divider className={classes.divider} />
 
         <RadioButtonsSection
