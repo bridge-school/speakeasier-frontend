@@ -32,7 +32,17 @@ const EventDetailsPage = ({ match, getEventDetails, event }) => {
             <Header buttonText="Submit Conference" path="/submit-conference" />
             <Container maxWidth="md">
                 <Box flexGrow={1} textAlign="center" className={classes.box}>
-                    <h1 className={classes.title}>Conference: {event.eventName}</h1>
+                    <h1>Event Name: {event.eventName}</h1>
+                    <h1>Event Date: {event.eventDate}</h1>
+                    <h1>Event Website: {event.eventWebsite}</h1>
+                    <h1>Event Location: {event.location}</h1>
+                    <h1>Submission Date: {event.submissionDate}</h1>
+                    <h1>Submission Website: {event.submissionWebsite}</h1>
+                    <h1>Scholarships: {event.scholarships}</h1>
+                    <h1>COC: {event.coc}</h1>
+                    <h1>Compensation: {event.compensation}</h1>
+                    <h1>Contact Name: {event.contactName}</h1>
+                    <h1>Contact Email: {event.contactEmail}</h1>
                 </Box>
             </Container>
         </div>
