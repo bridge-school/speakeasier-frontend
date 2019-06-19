@@ -11,6 +11,19 @@ export const getEventsErrored = () => ({
   type: 'GET_EVENTS_ERRORED'
 });
 
+export const getEventDetailsStarted = () => ({
+  type: 'GET_EVENT_DETAILS_STARTED'
+});
+
+export const getEventDetailsSucceeded = payload => ({
+  type: 'GET_EVENT_DETAILS_SUCCEEDED',
+  payload
+});
+
+export const getEventDetailsErrored = () => ({
+  type: 'GET_EVENT_DETAILS_ERRORED'
+});
+
 export const createEventStarted = () => ({
   type: 'CREATE_EVENT_STARTED'
 });
@@ -36,6 +49,18 @@ export const fetchEvents = () => {
   };
 };
 
+export const fetchEventDetails = (id) => {
+  return (dispatch) => {
+    dispatch(getEventDetailsStarted());
+    fetch(`http://speakeasier-backend.bridgeschoolapp.io/conferences/${id}`)
+      .then(res => !res.ok ? Promise.reject('Something went wrong :(') : res.json())
+      .then(event => {
+        dispatch(getEventDetailsSucceeded(event));
+      })
+      .catch(() => dispatch(getEventDetailsErrored()));
+  };
+};
+
 export const addEvent = formData => {
   return (dispatch) => {
     dispatch(createEventStarted());
@@ -51,8 +76,8 @@ export const addEvent = formData => {
         dispatch(createEventSucceeded(event));
       })
       .catch(err => {
-        console.log(err)
-        dispatch(createEventErrored(err))
+        console.log(err);
+        dispatch(createEventErrored(err));
       });
   };
 };
