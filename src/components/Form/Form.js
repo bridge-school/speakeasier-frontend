@@ -252,7 +252,7 @@ const Form = ({ history, addEvent, isLoading }) => {
         className={classes.submitButton}
         type="submit"
         disabled={
-          isLoading || Object.values(formData).includes("")
+          isLoading || Object.values(formData).includes("") || formFieldIsValid.recaptchaError
         }
       >
         {isLoading && (
