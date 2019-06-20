@@ -125,9 +125,9 @@ const Form = ({ history, addEvent, isLoading }) => {
     createdAt: null,
     eventDescription: "",
     socials: {
-      facebook: "",
-      twitter: "",
-      linkedin: ""
+      facebook: null,
+      twitter: null,
+      linkedin: null
     }
   });
 
