@@ -299,7 +299,7 @@ const Form = ({ history, addEvent, isLoading }) => {
         <Divider className={classes.divider} />
       </div>
 
-      <div className={classes.recaptcha}> 
+      <div className={classes.recaptcha}>
         <RecaptchaSection
           handleRecaptcha={handleRecaptcha}
         />

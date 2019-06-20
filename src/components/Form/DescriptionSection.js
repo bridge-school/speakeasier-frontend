@@ -16,7 +16,7 @@ const DescriptionSection = ({
         <>
           <TextField
             id="description"
-            label="Event description (max 1000 characters)"
+            label="Event Description (Max 1000 characters)"
             placeholder="Please describe your event"
             name="eventDescription"
             multiline={true}

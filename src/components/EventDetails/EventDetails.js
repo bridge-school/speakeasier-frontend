@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap, faCheckSquare, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { faTwitterSquare, faFacebookSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import Typography from '@material-ui/core/Typography';
 import cx from 'classnames';
 
@@ -19,12 +20,12 @@ const useStyles = makeStyles({
     textAlign: 'left',
     lineHeight: '1.5',
     color: '#8C8C95',
-    padding: '25px'
+    padding: '20px 25px'
   },
   aside: {
-    width: '100%', 
+    width: '100%',
     textAlign: 'left',
-    padding: '25px',
+    padding: '20px 25px',
     color: '#8C8C95',
     '@media (min-width: 768px)': {
       width: '250px'
@@ -70,7 +71,7 @@ const EventDetails = ({ event }) => {
 
         <p className={classes.subtitle}>Event website</p>
         <div className={classes.details}>
-          <a href={event.eventWebsite}>{event.eventWebsite}</a>
+          <a href={event.eventWebsite} rel="noopener noreferrer" target="_blank">{event.eventWebsite}</a>
         </div>
 
         <p className={classes.subtitle}>Location</p>
@@ -85,7 +86,7 @@ const EventDetails = ({ event }) => {
 
         <p className={classes.subtitle}>Submission website</p>
         <div className={classes.details}>
-          <a href={event.submissionWebsite}>{event.submissionWebsite}</a>
+          <a href={event.submissionWebsite} rel="noopener noreferrer" target="_blank">{event.submissionWebsite}</a>
         </div>
 
         <div className={classes.extrasMargin}>
@@ -102,13 +103,34 @@ const EventDetails = ({ event }) => {
           </Typography>
         </div>
 
-        <div className={classes.extrasMargin}>
+        <div className={classes.details}>
           <Typography variant="inherit" color="textPrimary" gutterBottom>
             <Icon icon={faGraduationCap} className={classes.icon} />
             <span className={cx(classes.extraText, { [classes.strike]: event.scholarships === 'no'})}>Diversity Scholarships</span>
           </Typography>
         </div>
 
+        {event.socials &&
+          <div>
+            {event.socials.facebook &&
+              <a href={event.socials.facebook} rel="noopener noreferrer" target="_blank" className={classes.extraText}>
+                <Icon icon={faFacebookSquare} className={classes.icon} size="2x" />
+              </a>
+            }
+
+            {event.socials.linkedin &&
+              <a href={event.socials.linkedin} rel="noopener noreferrer" target="_blank" className={classes.extraText}>
+                <Icon icon={faLinkedin} className={classes.icon} size="2x" />
+              </a>
+            }
+
+            {event.socials.twitter &&
+              <a href={event.socials.twitter} rel="noopener noreferrer" target="_blank" className={classes.extraText}>
+                <Icon icon={faTwitterSquare} className={classes.icon} size="2x" />
+              </a>
+            }
+          </div>
+        }
       </div>
     </div>
   );
