@@ -17,7 +17,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "grid",
     columnGap: "100px",
-    rowGap: "25px"
+    rowGap: "25px",
+    [theme.breakpoints.down('sm')]: {
+      display: 'block'
+    },
   },
   inputField: {
     flex: 1,
@@ -34,14 +37,23 @@ const useStyles = makeStyles(theme => ({
       textAlign: "left",
       marginBottom: 10,
       lineHeight: 1.3
-    }
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: '10px 10px'
+    },
   },
   fullWidth: {
     gridColumn: "span 2",
-    width: "100%"
+    width: "100%",
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    marginBottom: 30
   },
   divider: {
-    gridColumn: "span 2"
+    gridColumn: "span 2",
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    },
   },
   autocomplete: {
     flex: 1,
@@ -49,6 +61,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: "100%",
+    marginBottom: 30,
     "& TextField": {
       flex: 1,
       marginLeft: theme.spacing(1),
@@ -255,9 +268,10 @@ const Form = ({ history, addEvent, isLoading }) => {
         />
 
         <Divider className={classes.divider} />
+      </div>
 
+      <div className={classes.recaptcha}> 
         <RecaptchaSection
-          className={classes.recaptcha}
           handleRecaptcha={handleRecaptcha}
         />
       </div>
