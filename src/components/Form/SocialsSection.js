@@ -22,7 +22,7 @@ const SocialsSection = ({
         <SocialsItem
             type={twitter}
             name="twitter"
-            label="Twitter Handle"
+            label="Twitter Url"
             classInput={classInput}
             inputOnChange={inputOnChange}
             icon={faTwitter}
@@ -31,7 +31,7 @@ const SocialsSection = ({
         <SocialsItem
             type={linkedin}
             name="linkedin"
-            label="LinkedIn Page"
+            label="LinkedIn Url"
             classInput={classInput}
             inputOnChange={inputOnChange}
             icon={faLinkedinIn}
