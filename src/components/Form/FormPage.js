@@ -10,7 +10,8 @@ const useStyles = makeStyles({
     backgroundColor: '#FFF',
     border: '1px solid #D9DCEF',
     borderRadius: '6px',
-    minHeight: '600px'
+    minHeight: '600px',
+    marginBottom: '80px'
   },
   title: {
     fontWeight: '300',
