@@ -12,6 +12,7 @@ import SubmissionSection from "./SubmissionSection";
 import RadioButtonsSection from "./RadioButtonsSection";
 import RecaptchaSection from "./RecaptchaSection";
 import DescriptionSection from "./DescriptionSection";
+import SocialsSection from "./SocialsSection";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -108,8 +109,13 @@ const Form = ({ history, addEvent, isLoading }) => {
     scholarships: "",
     contactName: "",
     contactEmail: "",
+    createdAt: null,
     eventDescription: "",
-    createdAt: null
+    socials: {
+      facebook: "",
+      twitter: "",
+      linkedin: ""
+    }
   });
 
   const [formFieldIsValid, setFormFieldIsValid] = useState({
@@ -183,6 +189,21 @@ const Form = ({ history, addEvent, isLoading }) => {
       recaptchaError: false
     })
 
+    const handleSocialsChange = (data) => {
+      const formDataName = data.target.name;
+      const formDataValue = data.target.value;
+
+      const updatedSocials = {
+        ...formData.socials,
+        [formDataName]: formDataValue
+      }
+
+      setFormData({
+        ...formData,
+        socials: updatedSocials
+      });
+    }
+
   const onSubmit = event  => {
     event.preventDefault();
 
@@ -232,7 +253,7 @@ const Form = ({ history, addEvent, isLoading }) => {
             values={formData.description}
             classInput={classes.fullWidth}
             inputOnChange={handleChange}
-          />
+          />   
 
         <Divider className={classes.divider} />
 
@@ -244,6 +265,14 @@ const Form = ({ history, addEvent, isLoading }) => {
           handleChange={handleChange}
         />
 
+        <Divider className={classes.divider} />
+
+        <SocialsSection 
+          socials={formData.socials}
+          classInput={classes.inputField} 
+          inputOnChange={handleSocialsChange}
+        />
+       
         <Divider className={classes.divider} />
 
         <ContactSection
