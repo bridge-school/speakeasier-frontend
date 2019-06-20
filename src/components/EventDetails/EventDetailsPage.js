@@ -29,7 +29,7 @@ const EventDetailsPage = ({ match, getEventDetails, event }) => {
 
   return (
     <div>
-      <Header buttonText="Home" path="/" />
+      <Header buttonText="Back to Conferences" path="/" />
         <Container maxWidth="md">
           <h1 className={classes.title}>{event.eventName}</h1>
           <Box p={4} flexGrow={1} textAlign="center" className={classes.body}>
