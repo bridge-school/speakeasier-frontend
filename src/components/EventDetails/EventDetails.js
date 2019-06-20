@@ -8,7 +8,11 @@ import cx from 'classnames';
 
 const useStyles = makeStyles({
   root: {
-    display: 'flex'
+    display: 'flex',
+    flexDirection: 'column',
+    '@media (min-width: 768px)': {
+      flexDirection: 'row'
+    }
   },
   main: {
     flex: '1 0',
@@ -18,10 +22,13 @@ const useStyles = makeStyles({
     padding: '25px'
   },
   aside: {
-    width: '250px',
+    width: '100%', 
     textAlign: 'left',
     padding: '25px',
-    color: '#8C8C95'
+    color: '#8C8C95',
+    '@media (min-width: 768px)': {
+      width: '250px'
+    }
   },
   subtitle: {
     color: 'black'
