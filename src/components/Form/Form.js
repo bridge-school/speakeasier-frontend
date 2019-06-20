@@ -11,6 +11,7 @@ import EventSection from "./EventSection";
 import SubmissionSection from "./SubmissionSection";
 import RadioButtonsSection from "./RadioButtonsSection";
 import RecaptchaSection from "./RecaptchaSection";
+import DescriptionSection from "./DescriptionSection";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,6 +35,10 @@ const useStyles = makeStyles(theme => ({
       marginBottom: 10,
       lineHeight: 1.3
     }
+  },
+  fullWidth: {
+    gridColumn: "span 2",
+    width: "100%"
   },
   divider: {
     gridColumn: "span 2"
@@ -103,7 +108,8 @@ const Form = ({ history, addEvent, isLoading }) => {
     scholarships: "",
     contactName: "",
     contactEmail: "",
-    createdAt: ""
+    createdAt: "",
+    eventDescription: ""
   });
 
   const [formFieldIsValid, setFormFieldIsValid] = useState({
@@ -219,6 +225,16 @@ const Form = ({ history, addEvent, isLoading }) => {
           websiteError={formFieldIsValid.submissionWebsiteError}
           classInput={classes.inputField}
         />
+
+        <Divider className={classes.divider} />
+
+        <DescriptionSection 
+            values={formData.description}
+            classInput={classes.fullWidth} 
+            inputOnChange={handleChange}
+          />   
+       
+        <Divider className={classes.divider} />
 
         <RadioButtonsSection
           compensation={formData.compensation}
