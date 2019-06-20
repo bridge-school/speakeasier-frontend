@@ -108,8 +108,8 @@ const Form = ({ history, addEvent, isLoading }) => {
     scholarships: "",
     contactName: "",
     contactEmail: "",
-    createdAt: "",
-    eventDescription: ""
+    eventDescription: "",
+    createdAt: null
   });
 
   const [formFieldIsValid, setFormFieldIsValid] = useState({
@@ -228,12 +228,12 @@ const Form = ({ history, addEvent, isLoading }) => {
 
         <Divider className={classes.divider} />
 
-        <DescriptionSection 
+        <DescriptionSection
             values={formData.description}
-            classInput={classes.fullWidth} 
+            classInput={classes.fullWidth}
             inputOnChange={handleChange}
-          />   
-       
+          />
+
         <Divider className={classes.divider} />
 
         <RadioButtonsSection
@@ -268,7 +268,7 @@ const Form = ({ history, addEvent, isLoading }) => {
         className={classes.submitButton}
         type="submit"
         disabled={
-          isLoading || Object.values(formData).includes("") || formFieldIsValid.recaptchaError === true
+          isLoading || Object.values(formData).includes("") || formFieldIsValid.recaptchaError
         }
       >
         {isLoading && (
